@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BF5F446E-BDCF-48F4-B94A-B70CD295E7C2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -97,8 +97,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="TestSRTs\Angels.&amp;.Demons.2009.Extended.Cut.BluRay.720p.x264.DTS-WiKi_RU.srt" />
-    <None Include="TestSRTs\Era glaciale 2.ita.srt" />
+    <None Include="TestSRTs\aid_ru.srt" />
+    <None Include="TestSRTs\eg_it.srt" />
     <None Include="TestSRTs\test.srt" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
