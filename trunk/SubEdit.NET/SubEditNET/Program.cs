@@ -33,6 +33,9 @@ namespace SubEditNET
 
             mainForm.DebugLogger.Text = debugLogger.getCurrentLog();
 
+            //check display res
+            //add routine for netbook < x*800
+            //Application.Run(mainFormNetbook);
             Application.Run(mainForm);
         }
     }
