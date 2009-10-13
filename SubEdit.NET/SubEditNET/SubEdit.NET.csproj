@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BF5F446E-BDCF-48F4-B94A-B70CD295E7C2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -66,6 +66,12 @@
   <ItemGroup>
     <Compile Include="Cache\FileCache.cs" />
     <Compile Include="Converter\CP1251toUnicodeConverter.cs" />
+    <Compile Include="MainFormNB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormNB.Designer.cs">
+      <DependentUpon>MainFormNB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loader\Entities\SRT.cs" />
     <Compile Include="Loader\Entities\SRTLine.cs" />
     <Compile Include="Loader\Entities\SRTTime.cs" />
@@ -79,6 +85,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainFormNB.resx">
+      <DependentUpon>MainFormNB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
