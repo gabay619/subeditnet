@@ -29,25 +29,27 @@ namespace SubEditNET
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm mainForm = new MainForm();
+            
 
             int currentScreenWidth=System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
             int currentScreenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
 
             debugLogger.add(currentScreenWidth.ToString()+"x"+currentScreenHeight.ToString(), Level.DEBUG);
             
-            
-            mainForm.DebugLogger.Text = debugLogger.getCurrentLog();
 
             //check display res
             //add routine for netbook < x*800
             //Application.Run(mainFormNetbook);
             if (currentScreenHeight <= 600)
             {
-               // Application.Run(mainFormNetbook);
+                MainFormNB mainFormNB = new MainFormNB();
+                mainFormNB.DebugLogger.Text = debugLogger.getCurrentLog();
+                Application.Run(mainFormNB);
             }
             else
             {
+                MainForm mainForm = new MainForm();
+                mainForm.DebugLogger.Text = debugLogger.getCurrentLog();
                 Application.Run(mainForm);
             }
 
