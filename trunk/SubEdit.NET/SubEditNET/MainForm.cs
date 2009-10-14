@@ -239,5 +239,10 @@ namespace SubEditNET
             logger.clear();
             DebugLogger.Text = logger.getCurrentLog();
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Do you want to save the file? This can not be undone.","Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
     }
 }
