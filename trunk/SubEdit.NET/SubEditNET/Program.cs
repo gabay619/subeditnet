@@ -34,24 +34,10 @@ namespace SubEditNET
             int currentScreenWidth=System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
             int currentScreenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
 
-            debugLogger.add(currentScreenWidth.ToString()+"x"+currentScreenHeight.ToString(), Level.DEBUG);
+            MainForm mainForm = new MainForm();
+            mainForm.DebugLogger.Text = debugLogger.getCurrentLog();
+            Application.Run(mainForm);
             
-
-            //check display res
-            //add routine for netbook < x*800
-            //Application.Run(mainFormNetbook);
-            if (currentScreenHeight <= 600)
-            {
-                MainFormNB mainFormNB = new MainFormNB();
-                mainFormNB.DebugLogger.Text = debugLogger.getCurrentLog();
-                Application.Run(mainFormNB);
-            }
-            else
-            {
-                MainForm mainForm = new MainForm();
-                mainForm.DebugLogger.Text = debugLogger.getCurrentLog();
-                Application.Run(mainForm);
-            }
 
           
         }

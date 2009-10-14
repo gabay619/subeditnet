@@ -66,12 +66,6 @@
   <ItemGroup>
     <Compile Include="Cache\FileCache.cs" />
     <Compile Include="Converter\CP1251toUnicodeConverter.cs" />
-    <Compile Include="MainFormNB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainFormNB.Designer.cs">
-      <DependentUpon>MainFormNB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Loader\Entities\SRT.cs" />
     <Compile Include="Loader\Entities\SRTLine.cs" />
     <Compile Include="Loader\Entities\SRTTime.cs" />
@@ -85,10 +79,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainFormNB.resx">
-      <DependentUpon>MainFormNB.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
