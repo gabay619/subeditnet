@@ -19,6 +19,16 @@ namespace SubEditNET
         public MainForm()
         {
             InitializeComponent();
+            int currentScreenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+            int currentScreenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+
+            if (currentScreenHeight <= 600)
+            {
+                //scale the group boxes
+                previewGroupBox.Size = new Size(400,150);
+                logGroupBox.Size = new Size();
+                this.Size = new Size();
+            }
         }
 
         private void openSRTFile_FileOk(object sender, CancelEventArgs e)
