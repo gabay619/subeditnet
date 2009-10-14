@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.previewGroupBox = new System.Windows.Forms.GroupBox();
@@ -64,9 +64,9 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripOpenButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSaveButton = new System.Windows.Forms.ToolStripButton();
             this.controlGroupBox = new System.Windows.Forms.GroupBox();
             this.currentFileGroupBox = new System.Windows.Forms.GroupBox();
             this.currentFileTextbox = new System.Windows.Forms.TextBox();
@@ -77,11 +77,11 @@
             this.timeshift_second_textinput = new System.Windows.Forms.TextBox();
             this.timeshift_hour_textbox = new System.Windows.Forms.TextBox();
             this.timeshift__minute_textinput = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.statusStrip1.SuspendLayout();
+            this.convertGroupBox = new System.Windows.Forms.GroupBox();
+            this.cp1251toUCButton = new System.Windows.Forms.Button();
+            this.cp1252toUCButton = new System.Windows.Forms.Button();
+            this.convertLabel = new System.Windows.Forms.Label();
+            this.statusStripMain.SuspendLayout();
             this.previewGroupBox.SuspendLayout();
             this.logContextMenu.SuspendLayout();
             this.logGroupBox.SuspendLayout();
@@ -90,19 +90,19 @@
             this.controlGroupBox.SuspendLayout();
             this.currentFileGroupBox.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.convertGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // statusStrip1
+            // statusStripMain
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 465);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(794, 22);
-            this.statusStrip1.TabIndex = 0;
-            this.statusStrip1.Text = "statusStrip1";
+            this.statusStripMain.Location = new System.Drawing.Point(0, 465);
+            this.statusStripMain.Name = "statusStripMain";
+            this.statusStripMain.Size = new System.Drawing.Size(794, 22);
+            this.statusStripMain.TabIndex = 0;
+            this.statusStripMain.Text = "statusStrip1";
             // 
             // toolStripProgressBar1
             // 
@@ -364,41 +364,41 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
+            this.toolStripOpenButton,
             this.toolStripSeparator3,
-            this.toolStripButton2});
+            this.toolStripSaveButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(794, 25);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // toolStripOpenButton
             // 
-            this.toolStripButton1.Image = global::SubEditNET.Properties.Resources.Folder_Open;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(56, 22);
-            this.toolStripButton1.Text = "Open";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripOpenButton.Image = global::SubEditNET.Properties.Resources.Folder_Open;
+            this.toolStripOpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripOpenButton.Name = "toolStripOpenButton";
+            this.toolStripOpenButton.Size = new System.Drawing.Size(56, 22);
+            this.toolStripOpenButton.Text = "Open";
+            this.toolStripOpenButton.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton2
+            // toolStripSaveButton
             // 
-            this.toolStripButton2.Image = global::SubEditNET.Properties.Resources.FloppyDisk;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(51, 22);
-            this.toolStripButton2.Text = "Save";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.toolStripSaveButton.Image = global::SubEditNET.Properties.Resources.FloppyDisk;
+            this.toolStripSaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSaveButton.Name = "toolStripSaveButton";
+            this.toolStripSaveButton.Size = new System.Drawing.Size(51, 22);
+            this.toolStripSaveButton.Text = "Save";
+            this.toolStripSaveButton.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // controlGroupBox
             // 
-            this.controlGroupBox.Controls.Add(this.groupBox1);
+            this.controlGroupBox.Controls.Add(this.convertGroupBox);
             this.controlGroupBox.Controls.Add(this.currentFileGroupBox);
             this.controlGroupBox.Controls.Add(this.groupBox4);
             this.controlGroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -498,44 +498,44 @@
             this.timeshift__minute_textinput.Text = "mm";
             this.timeshift__minute_textinput.TextChanged += new System.EventHandler(this.timeshift__minute_textinput_TextChanged);
             // 
-            // groupBox1
+            // convertGroupBox
             // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Location = new System.Drawing.Point(7, 163);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(352, 83);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Convert";
+            this.convertGroupBox.Controls.Add(this.convertLabel);
+            this.convertGroupBox.Controls.Add(this.cp1252toUCButton);
+            this.convertGroupBox.Controls.Add(this.cp1251toUCButton);
+            this.convertGroupBox.Location = new System.Drawing.Point(7, 163);
+            this.convertGroupBox.Name = "convertGroupBox";
+            this.convertGroupBox.Size = new System.Drawing.Size(352, 83);
+            this.convertGroupBox.TabIndex = 10;
+            this.convertGroupBox.TabStop = false;
+            this.convertGroupBox.Text = "Convert";
             // 
-            // button3
+            // cp1251toUCButton
             // 
-            this.button3.Location = new System.Drawing.Point(15, 24);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 30);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "CP1251 to Unicode";
-            this.button3.UseVisualStyleBackColor = true;
+            this.cp1251toUCButton.Location = new System.Drawing.Point(15, 24);
+            this.cp1251toUCButton.Name = "cp1251toUCButton";
+            this.cp1251toUCButton.Size = new System.Drawing.Size(151, 30);
+            this.cp1251toUCButton.TabIndex = 0;
+            this.cp1251toUCButton.Text = "CP1251 to Unicode";
+            this.cp1251toUCButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // cp1252toUCButton
             // 
-            this.button4.Location = new System.Drawing.Point(172, 24);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(158, 30);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "CP1252 to Unicode";
-            this.button4.UseVisualStyleBackColor = true;
+            this.cp1252toUCButton.Location = new System.Drawing.Point(172, 24);
+            this.cp1252toUCButton.Name = "cp1252toUCButton";
+            this.cp1252toUCButton.Size = new System.Drawing.Size(158, 30);
+            this.cp1252toUCButton.TabIndex = 1;
+            this.cp1252toUCButton.Text = "CP1252 to Unicode";
+            this.cp1252toUCButton.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // convertLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "CP1251 is ASCII Cyrillic, CP1252 is ASCI Western";
+            this.convertLabel.AutoSize = true;
+            this.convertLabel.Location = new System.Drawing.Point(30, 57);
+            this.convertLabel.Name = "convertLabel";
+            this.convertLabel.Size = new System.Drawing.Size(283, 17);
+            this.convertLabel.TabIndex = 2;
+            this.convertLabel.Text = "CP1251 is ASCII Cyrillic, CP1252 is ASCI Western";
             // 
             // MainForm
             // 
@@ -546,7 +546,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.previewGroupBox);
             this.Controls.Add(this.logGroupBox);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -555,8 +555,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SubEdit.NET";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStripMain.ResumeLayout(false);
+            this.statusStripMain.PerformLayout();
             this.previewGroupBox.ResumeLayout(false);
             this.previewGroupBox.PerformLayout();
             this.logContextMenu.ResumeLayout(false);
@@ -571,8 +571,8 @@
             this.currentFileGroupBox.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.convertGroupBox.ResumeLayout(false);
+            this.convertGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -580,7 +580,7 @@
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStripMain;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.GroupBox previewGroupBox;
@@ -596,8 +596,8 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripOpenButton;
+        private System.Windows.Forms.ToolStripButton toolStripSaveButton;
         private System.Windows.Forms.ToolStripMenuItem howDoIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contentsToolStripMenuItem;
@@ -628,10 +628,10 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ContextMenuStrip logContextMenu;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox convertGroupBox;
+        private System.Windows.Forms.Label convertLabel;
+        private System.Windows.Forms.Button cp1252toUCButton;
+        private System.Windows.Forms.Button cp1251toUCButton;
     }
 }
 
