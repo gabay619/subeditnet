@@ -9,7 +9,7 @@ namespace SubEditNET.Loader
     class SRT
     {
 
-       private List<SRTLine> srtlines = new List<SRTLine>();
+       private List<SRTToken> srtlines = new List<SRTToken>();
         //String encoding;
 
 
@@ -26,7 +26,7 @@ namespace SubEditNET.Loader
         //    srtlines.Add(newLine);
         //}
 
-       public void addLine(SRTLine line)
+       public void addLine(SRTToken line)
        {
            srtlines.Add(line);
        }

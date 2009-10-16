@@ -67,7 +67,7 @@
     <Compile Include="Cache\FileCache.cs" />
     <Compile Include="Converter\CP1251toUnicodeConverter.cs" />
     <Compile Include="Loader\Entities\SRT.cs" />
-    <Compile Include="Loader\Entities\SRTLine.cs" />
+    <Compile Include="Loader\Entities\SRTToken.cs" />
     <Compile Include="Loader\Entities\SRTTime.cs" />
     <Compile Include="Loader\SRTLoader.cs" />
     <Compile Include="Logger\DebugLogger.cs" />

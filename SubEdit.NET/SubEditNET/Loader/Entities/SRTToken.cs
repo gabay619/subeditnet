@@ -5,14 +5,14 @@ using System.Text;
 
 namespace SubEditNET.Loader.Entities
 {
-    class SRTLine
+    class SRTToken
     {
         private int id;
         private SRTTime start_time;
         private SRTTime end_time;
         private string line;
 
-        public SRTLine()
+        public SRTToken()
         {
             this.start_time = new SRTTime();
             start_time.setTime("00:00:00,000");

@@ -196,7 +196,7 @@ namespace SubEditNET.Loader
         {
             SRT ansiSRT = new SRT();
 
-            Entities.SRTLine line = new Entities.SRTLine();
+            Entities.SRTToken line = new Entities.SRTToken();
 
             StreamReader srtFileReader = new System.IO.StreamReader(path);
             string currentLine = null;
