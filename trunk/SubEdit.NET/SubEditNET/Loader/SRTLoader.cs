@@ -205,7 +205,7 @@ namespace SubEditNET.Loader
                 //CHECK IF LINE IS NEW INDEX
                  if (IsNumeric(currentLine))
                  {
-                     line.Index = Convert.ToInt32(currentLine);
+                     line.setID(Convert.ToInt32(currentLine));
                      logger.add("INDEX:" + currentLine, Level.DEBUG);
 
                  }//ENDIF
@@ -215,8 +215,8 @@ namespace SubEditNET.Loader
                  {
                      //char[] arr = currentLine.ToCharArray();
 
-                     line.addStartTime(currentLine.Substring(0, 12));
-                     line.addEndTime(currentLine.Substring(17, 12));
+                     line.setStartTime(currentLine.Substring(0, 12));
+                     line.setEndTime(currentLine.Substring(17, 12));
                      //logger.add("s_substr: " + line.start_time.getStartTime(), Level.DEBUG);
                      //logger.add("e_substr: " + line.end_time.getEndTime(), Level.DEBUG);
                      logger.add("TIMELINE:" + currentLine, Level.DEBUG);
@@ -226,14 +226,14 @@ namespace SubEditNET.Loader
                  if ((IsNumeric(currentLine) == false) && (currentLine.Contains("-->") == false) && ((currentLine == "") == false))
                  {
                      //if line is still empty just add the current line
-                     if (line.line == null || line.line == "")
+                     if (line.getLine() == null || line.getLine() == "")
                      {
-                         line.line = currentLine;
+                         line.setLine(currentLine);
                      }
                      //if line isnt empty add a space and the current line
                      else
                      {
-                         line.line = line.line + " " + currentLine;
+                         line.setLine(line.getLine() + " " + currentLine);
                      }
 
                      logger.add("CONTENTLINE:" + currentLine, Level.DEBUG);
@@ -243,11 +243,13 @@ namespace SubEditNET.Loader
                  if (currentLine == "")
                  {
                      //check if line complete
-                     if (line.Index != 0 && line.start_time != null && line.end_time != null && line.line != null)
+                     if (line.getID() != 0 && line.getStartTime() != null && line.getEndTime() != null && line.getLine() != null)
                      {
                          logger.add("LINE COMPLETE!!", Level.DEBUG);
-                          
-                         ansiSRT.addLine(line);
+
+                      //   ansiSRT.addLine(line.id, line.start_time, line.end_time, line.);
+                        ansiSRT.addLine(line);
+                       // line.clearLine();
                         // line.clearLine();
                      }
 
