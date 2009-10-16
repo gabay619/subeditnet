@@ -9,27 +9,27 @@ namespace SubEditNET.Loader
     class SRT
     {
 
-       public List<SRTLine> srtlines = new List<SRTLine>();
+       private List<SRTLine> srtlines = new List<SRTLine>();
         //String encoding;
 
 
-        public void addLine(int index,string starttime, string endtime, string line)
-        {
-            SRTLine newLine = new SRTLine();
-            newLine.Index = index;
+        //public void addLine(int index,string starttime, string endtime, string line)
+        //{
+        //    SRTLine newLine = new SRTLine();
+        //    newLine.id = index;
 
-            newLine.addStartTime(starttime);
-            newLine.addEndTime(endtime);
+        //    newLine.addStartTime(starttime);
+        //    newLine.addEndTime(endtime);
      
-            newLine.line = line;
+        //    newLine.line = line;
 
-            srtlines.Add(newLine);
-        }
+        //    srtlines.Add(newLine);
+        //}
 
-        public void addLine(SRTLine line)
-        {
-            srtlines.Add(line);
-        }
+       public void addLine(SRTLine line)
+       {
+           srtlines.Add(line);
+       }
 
 
 
@@ -37,11 +37,11 @@ namespace SubEditNET.Loader
             string content = "";
             for (int i = 0; i < srtlines.Count; i++ )
             {
-                content = srtlines[i].Index.ToString() + "\n"
+                content = srtlines[i].getID() + " "
 
-                    //+ srtlines[i].start_time.getStartTime() + "\n"
-                    //+ srtlines[i].end_time.getEndTime() + "\n"
-                    //+ srtlines[i].line+"\n\n"
+                    + srtlines[i].getStartTime() + " "
+                    + srtlines[i].getEndTime() + " "
+                     + srtlines[i].getLine() +" "
                     ;
                 
             }

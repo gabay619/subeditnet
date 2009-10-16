@@ -48,7 +48,7 @@ namespace SubEditNET
             //add message to logger
             currentFileTextbox.Text = srt_to_read;
           //  logger.add("openSRTFile_FileOk called:" + srt_to_read, Level.DEBUG);
-            logger.add("successfully read file with lines:"+currentSRT.srtlines.Count, Level.DEBUG);
+            logger.add("successfully read file with lines:", Level.DEBUG);
             DebugLogger.Text = logger.getCurrentLog();
         }
 
