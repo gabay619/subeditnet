@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.IO;
 
 using SubEditNET.Entities;
 using SubEditNET.Logger;
@@ -41,7 +41,31 @@ namespace SubEditNET.Saver
 
         public void saveSRT(SRT srt, String path)
         {
+            // create a writer and open the file
+            TextWriter saveLog = new StreamWriter("C:\\savelog.txt");
 
+            // write a line of text to the file
+            //saveLog.WriteLine(DateTime.Now);
+            //saveLog.WriteLine();
+
+            //saveLog.WriteLine(srt.getLineCounter());
+
+            for (int i = 0; i < srt.getLineCounter(); i++ )
+            {
+                if (i != 0)
+                {
+                    //space after each token
+                    saveLog.WriteLine();
+                }
+                SRTToken currentToken = srt.getToken(i);
+                saveLog.WriteLine(currentToken.getID());
+                saveLog.WriteLine(currentToken.getStartTime() + " --> " + currentToken.getEndTime());
+                saveLog.WriteLine(currentToken.getLine());
+
+            }
+
+            // close the stream
+            saveLog.Close();
 
 
         }
