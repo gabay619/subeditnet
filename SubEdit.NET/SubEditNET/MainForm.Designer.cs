@@ -38,6 +38,8 @@
             this.DebugLogger = new System.Windows.Forms.TextBox();
             this.logContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logGroupBox = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,14 +77,13 @@
             this.currentFileGroupBox = new System.Windows.Forms.GroupBox();
             this.currentFileTextbox = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.timeShiftMinusButton = new System.Windows.Forms.Button();
             this.timeshift_msecond_textinput = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.timeShiftPlusButton = new System.Windows.Forms.Button();
             this.timeshift_second_textinput = new System.Windows.Forms.TextBox();
             this.timeshift_hour_textbox = new System.Windows.Forms.TextBox();
             this.timeshift__minute_textinput = new System.Windows.Forms.TextBox();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.statusStripMain.SuspendLayout();
             this.previewGroupBox.SuspendLayout();
             this.logContextMenu.SuspendLayout();
@@ -131,6 +132,7 @@
             // previewTextbox
             // 
             this.previewTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.previewTextbox.ContextMenuStrip = this.previewContextMenuStrip;
             this.previewTextbox.Location = new System.Drawing.Point(6, 24);
             this.previewTextbox.Multiline = true;
             this.previewTextbox.Name = "previewTextbox";
@@ -167,15 +169,28 @@
             this.selectAllToolStripMenuItem,
             this.copyToolStripMenuItem});
             this.logContextMenu.Name = "logContextMenu";
-            this.logContextMenu.Size = new System.Drawing.Size(153, 92);
+            this.logContextMenu.Size = new System.Drawing.Size(123, 70);
             this.logContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.logContextMenu_Opening);
             // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.selectAllToolStripMenuItem.Text = "Select All";
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
             // 
             // logGroupBox
             // 
@@ -214,13 +229,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -442,6 +458,7 @@
             this.cp1252toUCButton.TabIndex = 1;
             this.cp1252toUCButton.Text = "CP1252 to Unicode";
             this.cp1252toUCButton.UseVisualStyleBackColor = true;
+            this.cp1252toUCButton.Click += new System.EventHandler(this.cp1252toUCButton_Click);
             // 
             // cp1251toUCButton
             // 
@@ -451,6 +468,7 @@
             this.cp1251toUCButton.TabIndex = 0;
             this.cp1251toUCButton.Text = "CP1251 to Unicode";
             this.cp1251toUCButton.UseVisualStyleBackColor = true;
+            this.cp1251toUCButton.Click += new System.EventHandler(this.cp1251toUCButton_Click);
             // 
             // currentFileGroupBox
             // 
@@ -474,9 +492,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.timeShiftMinusButton);
             this.groupBox4.Controls.Add(this.timeshift_msecond_textinput);
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.timeShiftPlusButton);
             this.groupBox4.Controls.Add(this.timeshift_second_textinput);
             this.groupBox4.Controls.Add(this.timeshift_hour_textbox);
             this.groupBox4.Controls.Add(this.timeshift__minute_textinput);
@@ -487,14 +505,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Time shift";
             // 
-            // button2
+            // timeShiftMinusButton
             // 
-            this.button2.Location = new System.Drawing.Point(270, 23);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(35, 26);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "-";
-            this.button2.UseVisualStyleBackColor = true;
+            this.timeShiftMinusButton.Location = new System.Drawing.Point(270, 23);
+            this.timeShiftMinusButton.Name = "timeShiftMinusButton";
+            this.timeShiftMinusButton.Size = new System.Drawing.Size(35, 26);
+            this.timeShiftMinusButton.TabIndex = 1;
+            this.timeShiftMinusButton.Text = "-";
+            this.timeShiftMinusButton.UseVisualStyleBackColor = true;
+            this.timeShiftMinusButton.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // timeshift_msecond_textinput
             // 
@@ -505,15 +524,15 @@
             this.timeshift_msecond_textinput.Text = "ms";
             this.timeshift_msecond_textinput.TextChanged += new System.EventHandler(this.timeshift_msecond_textinput_TextChanged);
             // 
-            // button1
+            // timeShiftPlusButton
             // 
-            this.button1.Location = new System.Drawing.Point(229, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(35, 26);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.timeShiftPlusButton.Location = new System.Drawing.Point(229, 23);
+            this.timeShiftPlusButton.Name = "timeShiftPlusButton";
+            this.timeShiftPlusButton.Size = new System.Drawing.Size(35, 26);
+            this.timeShiftPlusButton.TabIndex = 0;
+            this.timeShiftPlusButton.Text = "+";
+            this.timeShiftPlusButton.UseVisualStyleBackColor = true;
+            this.timeShiftPlusButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // timeshift_second_textinput
             // 
@@ -542,18 +561,10 @@
             this.timeshift__minute_textinput.Text = "mm";
             this.timeshift__minute_textinput.TextChanged += new System.EventHandler(this.timeshift__minute_textinput_TextChanged);
             // 
-            // selectAllToolStripMenuItem
+            // previewContextMenuStrip
             // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.selectAllToolStripMenuItem.Text = "Select All";
-            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
+            this.previewContextMenuStrip.Name = "previewContextMenuStrip";
+            this.previewContextMenuStrip.Size = new System.Drawing.Size(61, 4);
             // 
             // MainForm
             // 
@@ -635,8 +646,8 @@
         private System.Windows.Forms.ToolStripMenuItem themeToolStripMenuItem;
         private System.Windows.Forms.GroupBox controlGroupBox;
         private System.Windows.Forms.TextBox timeshift_hour_textbox;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button timeShiftMinusButton;
+        private System.Windows.Forms.Button timeShiftPlusButton;
         private System.Windows.Forms.TextBox timeshift_msecond_textinput;
         private System.Windows.Forms.TextBox timeshift_second_textinput;
         private System.Windows.Forms.TextBox timeshift__minute_textinput;
@@ -652,6 +663,7 @@
         private System.Windows.Forms.Button cp1251toUCButton;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip previewContextMenuStrip;
     }
 }
 
