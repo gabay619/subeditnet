@@ -20,7 +20,7 @@ namespace SubEditNET.Saver
 
         public SRTSaver()
         {
-            logger.add("[SRTSaver] SRT Saver initialized.", Level.DEBUG);
+            logger.add("SRT Saver initialized.", Level.DEBUG);
         }
 
         public static SRTSaver Instance
