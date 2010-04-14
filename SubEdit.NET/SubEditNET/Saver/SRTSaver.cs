@@ -59,7 +59,7 @@ namespace SubEditNET.Saver
                 }
                 SRTToken currentToken = srt.getToken(i);
                 saveLog.WriteLine(currentToken.getID());
-                saveLog.WriteLine(currentToken.getStartTime() + " --> " + currentToken.getEndTimeString());
+                saveLog.WriteLine(currentToken.getStartTimeString() + " --> " + currentToken.getEndTimeString());
                 saveLog.WriteLine(currentToken.getLine());
 
             }
