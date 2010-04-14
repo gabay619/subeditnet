@@ -75,7 +75,7 @@ namespace SubEditNET
             timeshift_hourEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getHour().ToString();
             timeshift_minuteEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getMinute().ToString();
             timeshift_secondEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getSecond().ToString();
-            timeshift_msecond_textinput.Text = currentSRT.getToken(0).getEndTime().getMilliSecond().ToString();
+            timeshift_msecEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getMilliSecond().ToString();
        
         }
 
@@ -282,6 +282,14 @@ namespace SubEditNET
                 MessageBox.Show("Do you want to save the file? This can not be undone.", "Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 SRTSaver saver = SRTSaver.Instance;
                 TimeShifter shifter = TimeShifter.Instance;
+
+                SRTTime newStartTime = new SRTTime(Convert.ToInt32(timeshift_hour_textbox.Text),
+                                                    Convert.ToInt32(timeshift__minute_textinput.Text),
+                                                    Convert.ToInt32(timeshift_second_textinput.Text),
+                                                    Convert.ToInt32(timeshift_msecond_textinput.Text));
+
+                shifter.shiftTime(currentSRT, newStartTime);
+
                 saver.saveSRT(currentSRT, currentFileTextbox.Text);
             }
         }

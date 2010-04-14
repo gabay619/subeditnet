@@ -29,9 +29,15 @@ namespace SubEditNET.Entities
         }
 
 
-        public void setStartTime(string starttime){
+        public void setStartTimeString(string starttime){
 
             this.start_time.setTime(starttime);
+        }
+
+
+        public void setStartTime(SRTTime startTime)
+        {
+            this.start_time = startTime;
         }
 
         public string getStartTimeString()
@@ -45,12 +51,16 @@ namespace SubEditNET.Entities
             return this.start_time;
         }
 
-        public void setEndTime(string endtime)
+        public void setEndTimeString(string endtime)
         {
              
             this.end_time.setTime(endtime);
         }
 
+        public void setEndTime(SRTTime endTime)
+        {
+            this.end_time = endTime;
+        }
 
         public string getEndTimeString()
         {
