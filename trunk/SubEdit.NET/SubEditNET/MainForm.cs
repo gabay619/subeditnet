@@ -6,10 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+
 using SubEditNET.Logger;
 using SubEditNET.Loader;
 using SubEditNET.Entities;
 using SubEditNET.Saver;
+using SubEditNET.Modifiers;
 
 namespace SubEditNET
 {
@@ -279,6 +281,7 @@ namespace SubEditNET
             {
                 MessageBox.Show("Do you want to save the file? This can not be undone.", "Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 SRTSaver saver = SRTSaver.Instance;
+                TimeShifter shifter = TimeShifter.Instance;
                 saver.saveSRT(currentSRT, currentFileTextbox.Text);
             }
         }
