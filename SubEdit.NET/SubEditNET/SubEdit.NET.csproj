@@ -71,9 +71,9 @@
   <ItemGroup>
     <Compile Include="Cache\FileCache.cs" />
     <Compile Include="Converter\CP1251toUnicodeConverter.cs" />
-    <Compile Include="Loader\Entities\SRT.cs" />
-    <Compile Include="Loader\Entities\SRTToken.cs" />
-    <Compile Include="Loader\Entities\SRTTime.cs" />
+    <Compile Include="Entities\SRT.cs" />
+    <Compile Include="Entities\SRTToken.cs" />
+    <Compile Include="Entities\SRTTime.cs" />
     <Compile Include="Loader\SRTLoader.cs" />
     <Compile Include="Logger\DebugLogger.cs" />
     <Compile Include="MainForm.cs">
@@ -110,6 +110,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Saver\SRTSaver.cs" />
     <Compile Include="Status\ProgressBarController.cs" />
     <Compile Include="Time\TimeEditor.cs" />
   </ItemGroup>

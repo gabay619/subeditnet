@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SubEditNET.Loader.Entities
+namespace SubEditNET.Entities
 {
     class SRTTime
     {

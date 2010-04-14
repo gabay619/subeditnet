@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
+using SubEditNET.Entities;
 using SubEditNET.Logger;
 using System.IO;
 
@@ -20,7 +20,7 @@ namespace SubEditNET.Loader
         {
 
 
-            logger.add("SRT Loader initialized.", Level.DEBUG);
+            logger.add("[SRTLoader] SRT Loader initialized.", Level.DEBUG);
 
         }
         public static SRTLoader Instance
@@ -162,28 +162,28 @@ namespace SubEditNET.Loader
             if (rawData[0] == 0xEF && rawData[1] == 0xBB && rawData[2] == 0xBF)
             {
                 encoding = FileEncoding.UTF8;
-                logger.add("UTF8", Level.DEBUG);
+                logger.add("[SRTLoader] UTF8", Level.DEBUG);
 
             }
 
             if (rawData[0] == 0xFF && rawData[1] == 0xFE)
             {
                 encoding = FileEncoding.UTF16_LITTLE_ENDIAN;
-                logger.add("UTF16_LITTLE_ENDIAN", Level.DEBUG);
+                logger.add("[SRTLoader] UTF16_LITTLE_ENDIAN", Level.DEBUG);
 
             }
 
             if (rawData[0] == 0xFE && rawData[1] == 0xFF)
             {
                 encoding = FileEncoding.UTF16_BIG_ENDIAN;
-                logger.add("UTF16_BIG_ENDIAN", Level.DEBUG);
+                logger.add("[SRTLoader] UTF16_BIG_ENDIAN", Level.DEBUG);
 
             }
 
             if (rawData[0] != 0xFE && rawData[0] != 0xFF && rawData[0] != 0xEF)
             {
                 encoding = FileEncoding.ANSI;
-                logger.add("ANSI", Level.DEBUG);
+                logger.add("[SRTLoader] ANSI", Level.DEBUG);
             }
 
 
@@ -206,7 +206,7 @@ namespace SubEditNET.Loader
                  if (IsNumeric(currentLine))
                  {
                      line.setID(Convert.ToInt32(currentLine));
-                     logger.add("INDEX:" + currentLine, Level.DEBUG);
+                     logger.add("[SRTLoader] INDEX:" + currentLine, Level.DEBUG);
 
                  }//ENDIF
 
@@ -219,7 +219,7 @@ namespace SubEditNET.Loader
                      line.setEndTime(currentLine.Substring(17, 12));
                      //logger.add("s_substr: " + line.start_time.getStartTime(), Level.DEBUG);
                      //logger.add("e_substr: " + line.end_time.getEndTime(), Level.DEBUG);
-                     logger.add("TIMELINE:" + currentLine, Level.DEBUG);
+                     logger.add("[SRTLoader] TIMELINE:" + currentLine, Level.DEBUG);
                  }//ENDIF
 
                 //CHECK IF LINE IS CONTENT LINE
@@ -236,7 +236,7 @@ namespace SubEditNET.Loader
                          line.setLine(line.getLine() + " " + currentLine);
                      }
 
-                     logger.add("CONTENTLINE:" + currentLine, Level.DEBUG);
+                     logger.add("[SRTLoader] CONTENTLINE:" + currentLine, Level.DEBUG);
                  }//ENDIF
 
                 //CHECK IF LINE IS COMPLETE
@@ -245,7 +245,7 @@ namespace SubEditNET.Loader
                      //check if line complete
                      if (line.getID() != 0 && line.getStartTime() != null && line.getEndTime() != null && line.getLine() != null)
                      {
-                         logger.add("LINE COMPLETE!!", Level.DEBUG);
+                         logger.add("[SRTLoader] LINE COMPLETE!!", Level.DEBUG);
 
                       //   ansiSRT.addLine(line.id, line.start_time, line.end_time, line.);
                         ansiSRT.addLine(line);
@@ -254,8 +254,8 @@ namespace SubEditNET.Loader
                      }
 
                      //add to list
-                  
-                     logger.add("NEXT SECTION", Level.DEBUG);
+
+                     logger.add("[SRTLoader] NEXT SECTION", Level.DEBUG);
                  }//ENDIF
 
             }
