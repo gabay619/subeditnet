@@ -64,7 +64,17 @@ namespace SubEditNET
             DebugLogger.Text = logger.getCurrentLog();
 
             currentSRT = newSRT;
-            
+
+            timeshift_hour_textbox.Text = currentSRT.getToken(0).getStartTime().getHour().ToString();
+            timeshift__minute_textinput.Text = currentSRT.getToken(0).getStartTime().getMinute().ToString();
+            timeshift_second_textinput.Text = currentSRT.getToken(0).getStartTime().getSecond().ToString();
+            timeshift_msecond_textinput.Text = currentSRT.getToken(0).getStartTime().getMilliSecond().ToString();
+
+            timeshift_hourEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getHour().ToString();
+            timeshift_minuteEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getMinute().ToString();
+            timeshift_secondEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getSecond().ToString();
+            timeshift_msecond_textinput.Text = currentSRT.getToken(0).getEndTime().getMilliSecond().ToString();
+       
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -118,8 +128,7 @@ namespace SubEditNET
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show("Version 0.1 Build 91012\nAuthor: M.Baehr\nE-Mail: baehr-m@online.de\nICQ: 166375846", "About SubEdit.NET",MessageBoxButtons.OK ,MessageBoxIcon.Information);
+            MessageBox.Show("----", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void spanishEspanolToolStripMenuItem_Click(object sender, EventArgs e)
@@ -324,27 +333,20 @@ namespace SubEditNET
                 }
                 //###############
 
-                int newMSValue = oldMSValue + 500;
-                int newSecValue = oldSecValue;
-                int newMinValue = oldMinValue;
-                int newHrValue = oldHrValue;
+                int oldTimeValue = oldHrValue * 60 * 60 * 1000 + oldMinValue * 60 * 1000 + oldSecValue * 1000 + oldMSValue;
 
-                if (newMSValue > 999)
-                {
+                int newTimeValue = oldTimeValue + 500;
+                //bis hier stimmt der wert newTimeValue nun muss er aufgesplittet werden und hier passieren die fehler:
 
-                    newSecValue = oldSecValue + 1;
-                    newMSValue = newMSValue - 1000;
-
-                    if (newSecValue > 59)
-                    {
-                        newMinValue = newMinValue + 1;
-                        newSecValue = newSecValue - 60;
-                        //handle minute jump
-                    }
-                }
+                int newHrValue = newTimeValue / 3600000;
+                int newMinValue = (newTimeValue - newHrValue * 3600000) / (60000);
+                int newSecValue = (newTimeValue - (newHrValue * 3600000) - (newMinValue * 60000)) / 1000;
+                int newMSValue = newTimeValue - newHrValue * 3600000 - newMinValue * 60000 - newSecValue * 1000;
 
                 timeshift_msecond_textinput.Text = newMSValue.ToString();
                 timeshift_second_textinput.Text = newSecValue.ToString();
+                timeshift__minute_textinput.Text = newMinValue.ToString();
+                timeshift_hour_textbox.Text = newHrValue.ToString();
             }
            
         }
@@ -389,7 +391,7 @@ namespace SubEditNET
             }
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void timeShiftMinusButton_Click(object sender, EventArgs e)
         {
             if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
             {
@@ -442,21 +444,38 @@ namespace SubEditNET
                 int oldTimeValue = oldHrValue * 60 * 60 * 1000 + oldMinValue * 60 * 1000 + oldSecValue * 1000 + oldMSValue;
 
                 int newTimeValue = oldTimeValue - 500;
+                //bis hier stimmt der wert newTimeValue nun muss er aufgesplittet werden und hier passieren die fehler:
+                if (newTimeValue >= 0)
+                {
 
-                int newHrValue = newTimeValue / 3600000;
-                int newMinValue = (newTimeValue - newHrValue * 60);
-                int newSecValue = oldSecValue;
-                int newMSValue = oldMSValue;
-                
-                
-                
+                    int newHrValue = newTimeValue / 3600000;
+                    int newMinValue = (newTimeValue - newHrValue * 3600000) / (60000);
+                    int newSecValue = (newTimeValue - (newHrValue * 3600000) - (newMinValue * 60000)) / 1000;
+                    int newMSValue = newTimeValue - newHrValue * 3600000 - newMinValue * 60000 - newSecValue * 1000;
 
-                timeshift_msecond_textinput.Text = newMSValue.ToString();
-                timeshift_second_textinput.Text = newSecValue.ToString();
-                timeshift__minute_textinput.Text = newMinValue.ToString();
-                timeshift_hour_textbox.Text = newHrValue.ToString();
+                    timeshift_msecond_textinput.Text = newMSValue.ToString();
+                    timeshift_second_textinput.Text = newSecValue.ToString();
+                    timeshift__minute_textinput.Text = newMinValue.ToString();
+                    timeshift_hour_textbox.Text = newHrValue.ToString();
+                }
+                else
+                {
+                    int newHrValue = 0;
+                    int newMinValue = 0;
+                    int newSecValue = 0;
+                    int newMSValue = 0;
+
+                    timeshift_msecond_textinput.Text = newMSValue.ToString();
+                    timeshift_second_textinput.Text = newSecValue.ToString();
+                    timeshift__minute_textinput.Text = newMinValue.ToString();
+                    timeshift_hour_textbox.Text = newHrValue.ToString();
+                }
+
+
             }
            
         }
+
+      
     }
 }

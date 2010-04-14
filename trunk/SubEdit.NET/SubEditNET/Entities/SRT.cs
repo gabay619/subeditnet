@@ -39,8 +39,8 @@ namespace SubEditNET.Entities
             {
                 content = srtlines[i].getID() + " "
 
-                    + srtlines[i].getStartTime() + " "
-                    + srtlines[i].getEndTime() + " "
+                    + srtlines[i].getStartTimeString() + " "
+                    + srtlines[i].getEndTimeString() + " "
                      + srtlines[i].getLine() +" "
                     ;
                 

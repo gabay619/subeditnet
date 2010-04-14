@@ -34,12 +34,16 @@ namespace SubEditNET.Entities
             this.start_time.setTime(starttime);
         }
 
-        public string getStartTime()
+        public string getStartTimeString()
         {
 
             return this.start_time.getTime();
         }
 
+        public SRTTime getStartTime()
+        {
+            return this.start_time;
+        }
 
         public void setEndTime(string endtime)
         {
@@ -48,9 +52,14 @@ namespace SubEditNET.Entities
         }
 
 
-        public string getEndTime()
+        public string getEndTimeString()
         {
             return this.end_time.getTime();
+        }
+
+        public SRTTime getEndTime()
+        {
+            return this.end_time;
         }
 
         public void setLine(string line)
