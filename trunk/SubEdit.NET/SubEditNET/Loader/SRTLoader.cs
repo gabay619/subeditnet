@@ -43,21 +43,21 @@ namespace SubEditNET.Loader
            if (encoding == FileEncoding.ANSI)
            {
                StreamReader srtFileReader = new System.IO.StreamReader(path, Encoding.Default);
-               return readANSI(srtFileReader, path);
+               return readFile(srtFileReader, path);
            }
 
            // //UTF16LE Handling
            if (encoding == FileEncoding.UTF16_LITTLE_ENDIAN)
            {
                StreamReader srtFileReader = new System.IO.StreamReader(path, Encoding.Unicode);
-               return readANSI(srtFileReader, path);
+               return readFile(srtFileReader, path);
            }
 
            // //UTF8 Handling
            if (encoding == FileEncoding.UTF8)
            {
                StreamReader srtFileReader = new System.IO.StreamReader(path, Encoding.UTF8);
-               return readANSI(srtFileReader, path);
+               return readFile(srtFileReader, path);
            }
             
             //TODO: proper error handling
@@ -126,7 +126,7 @@ namespace SubEditNET.Loader
         }
 
 
-        private SRT readANSI(StreamReader srtFileReader, string path)
+        private SRT readFile(StreamReader srtFileReader, string path)
         {
             SRT srt = new SRT();
 

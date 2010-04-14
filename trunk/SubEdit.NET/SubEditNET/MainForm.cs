@@ -55,7 +55,7 @@ namespace SubEditNET
             SRTLoader loader = SRTLoader.Instance;
             SRT newSRT = loader.readSRT(srt_to_read);
 
-            previewTextbox.Text = newSRT.printSRT();
+          //  previewTextbox.Text = newSRT.printSRT();
 
             //add message to logger
             currentFileTextbox.Text = srt_to_read;
@@ -262,82 +262,201 @@ namespace SubEditNET
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Do you want to save the file? This can not be undone.","Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            SRTSaver saver = SRTSaver.Instance;
-            saver.saveSRT(currentSRT,currentFileTextbox.Text);
-
+            if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
+            {
+                MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Do you want to save the file? This can not be undone.", "Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                SRTSaver saver = SRTSaver.Instance;
+                saver.saveSRT(currentSRT, currentFileTextbox.Text);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //read old values
-            int oldMSValue;
-            try
+            if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
             {
-                oldMSValue = Convert.ToInt32(timeshift_msecond_textinput.Text);
+                MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception)
+            else
             {
-                oldMSValue = 0;
-            }
-            //---
-            int oldSecValue;
-            try
-            {
-                oldSecValue = Convert.ToInt32(timeshift_second_textinput.Text);
-            }
-            catch (Exception)
-            {
-                oldSecValue = 0;
-            }
-            //---
-            int oldMinValue;
-            try
-            {
-                oldMinValue = Convert.ToInt32(timeshift__minute_textinput.Text);
-            }
-            catch (Exception)
-            {
-                oldMinValue = 0;
-            }
-            //---
-            int oldHrValue;
-            try
-            {
-                oldHrValue = Convert.ToInt32(timeshift_hour_textbox.Text);
-            }
-            catch (Exception)
-            {
-                oldHrValue = 0;
-            }
-            //###############
-
-            int newMSValue = oldMSValue + 500;
-            int newSecValue = oldSecValue;
-            int newMinValue = oldMinValue;
-            int newHrValue = oldHrValue;
-
-            if(newMSValue > 999){
-               
-                newSecValue = oldSecValue + 1;
-                newMSValue = newMSValue - 1000;
-
-                if (newSecValue > 59){
-                    newMinValue = newMinValue+1;
-                    newSecValue = newSecValue - 60;
-                    //handle minute jump
+                //read old values
+                int oldMSValue;
+                try
+                {
+                    oldMSValue = Convert.ToInt32(timeshift_msecond_textinput.Text);
                 }
+                catch (Exception)
+                {
+                    oldMSValue = 0;
+                }
+                //---
+                int oldSecValue;
+                try
+                {
+                    oldSecValue = Convert.ToInt32(timeshift_second_textinput.Text);
+                }
+                catch (Exception)
+                {
+                    oldSecValue = 0;
+                }
+                //---
+                int oldMinValue;
+                try
+                {
+                    oldMinValue = Convert.ToInt32(timeshift__minute_textinput.Text);
+                }
+                catch (Exception)
+                {
+                    oldMinValue = 0;
+                }
+                //---
+                int oldHrValue;
+                try
+                {
+                    oldHrValue = Convert.ToInt32(timeshift_hour_textbox.Text);
+                }
+                catch (Exception)
+                {
+                    oldHrValue = 0;
+                }
+                //###############
+
+                int newMSValue = oldMSValue + 500;
+                int newSecValue = oldSecValue;
+                int newMinValue = oldMinValue;
+                int newHrValue = oldHrValue;
+
+                if (newMSValue > 999)
+                {
+
+                    newSecValue = oldSecValue + 1;
+                    newMSValue = newMSValue - 1000;
+
+                    if (newSecValue > 59)
+                    {
+                        newMinValue = newMinValue + 1;
+                        newSecValue = newSecValue - 60;
+                        //handle minute jump
+                    }
+                }
+
+                timeshift_msecond_textinput.Text = newMSValue.ToString();
+                timeshift_second_textinput.Text = newSecValue.ToString();
             }
-
-            timeshift_msecond_textinput.Text = newMSValue.ToString();
-            timeshift_second_textinput.Text = newSecValue.ToString();
-
            
         }
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openSRTFile.Filter = "SRT Files (*.srt)|*.srt";
+            //openSRTFile.Filter = "SRT Files (*.srt)|*.srt|All files (*.*)|*.*";
+            if (openSRTFile.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+            DebugLogger.Text = logger.getCurrentLog();
+        }
+
+        private void cp1251toUCButton_Click(object sender, EventArgs e)
+        {
+            if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
+            {
+                MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("This feature is not implemented yet.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cp1252toUCButton_Click(object sender, EventArgs e)
+        {
+            if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
+            {
+                MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("This feature is not implemented yet.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
+            {
+                MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                //read old values
+                int oldMSValue;
+                try
+                {
+                    oldMSValue = Convert.ToInt32(timeshift_msecond_textinput.Text);
+                }
+                catch (Exception)
+                {
+                    oldMSValue = 0;
+                }
+                //---
+                int oldSecValue;
+                try
+                {
+                    oldSecValue = Convert.ToInt32(timeshift_second_textinput.Text);
+                }
+                catch (Exception)
+                {
+                    oldSecValue = 0;
+                }
+                //---
+                int oldMinValue;
+                try
+                {
+                    oldMinValue = Convert.ToInt32(timeshift__minute_textinput.Text);
+                }
+                catch (Exception)
+                {
+                    oldMinValue = 0;
+                }
+                //---
+                int oldHrValue;
+                try
+                {
+                    oldHrValue = Convert.ToInt32(timeshift_hour_textbox.Text);
+                }
+                catch (Exception)
+                {
+                    oldHrValue = 0;
+                }
+                //###############
+
+                int oldTimeValue = oldHrValue * 60 * 60 * 1000 + oldMinValue * 60 * 1000 + oldSecValue * 1000 + oldMSValue;
+
+                int newTimeValue = oldTimeValue - 500;
+
+                int newHrValue = newTimeValue / 3600000;
+                int newMinValue = (newTimeValue - newHrValue * 60);
+                int newSecValue = oldSecValue;
+                int newMSValue = oldMSValue;
+                
+                
+                
+
+                timeshift_msecond_textinput.Text = newMSValue.ToString();
+                timeshift_second_textinput.Text = newSecValue.ToString();
+                timeshift__minute_textinput.Text = newMinValue.ToString();
+                timeshift_hour_textbox.Text = newHrValue.ToString();
+            }
+           
         }
     }
 }
