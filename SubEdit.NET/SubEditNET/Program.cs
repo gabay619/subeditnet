@@ -20,7 +20,7 @@ namespace SubEditNET
             //set if logging is activated
             debugLogger.setStatus(Status.ENABLED);
             //set the logger level
-            debugLogger.setLevel(Level.DEBUG);
+            debugLogger.setLevel(Level.NORMAL);
            // debugLogger.add("Log initalized with Level: "+debugLogger.getLevel(), Level.DEBUG);
 
 

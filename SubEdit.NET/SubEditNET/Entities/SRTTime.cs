@@ -29,7 +29,34 @@ namespace SubEditNET.Entities
 
         public string getTime()
         {
-                return hour.ToString() + ":" + minute.ToString() + ":" + second.ToString() + "," + msecond.ToString();
+            string hourString = hour.ToString();
+            string minuteString = minute.ToString();
+            string secondString = second.ToString();
+            string msecondString = msecond.ToString();
+
+             if (hour < 10)
+             {
+                 hourString = "0" + hour.ToString();
+             }
+             if (minute < 10)
+             {
+                 minuteString = "0" + minute.ToString();
+             }
+             if (second < 10)
+             {
+                 secondString = "0" + second.ToString();
+             }
+             if (msecond < 100 && msecond > 10)
+             {
+                 msecondString = "0" + msecond.ToString();  
+             }
+             if (msecond < 10)
+             {
+                 msecondString = "00" + msecond.ToString();
+             }
+
+             return hourString + ":" + minuteString + ":" + secondString + "," + msecondString;
+       
         }
 
     }

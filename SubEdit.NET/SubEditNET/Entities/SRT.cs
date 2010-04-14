@@ -49,5 +49,15 @@ namespace SubEditNET.Entities
 
         }
 
+        public int getLineCounter()
+        {
+            return srtlines.Count;
+        }
+
+        public SRTToken getToken(int index)
+        {
+            return srtlines[index];
+        }
+
     }
 }

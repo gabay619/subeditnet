@@ -18,10 +18,7 @@ namespace SubEditNET.Loader
 
        public  SRTLoader()
         {
-
-
-            logger.add("[SRTLoader] SRT Loader initialized.", Level.DEBUG);
-
+            logger.add("SRT Loader initialized.", Level.DEBUG);
         }
         public static SRTLoader Instance
         {
@@ -38,103 +35,40 @@ namespace SubEditNET.Loader
             }
         }
 
-
-
         public SRT readSRT(string path)
         {
-            FileEncoding encoding = determineEncoding(path);
-           StreamReader srtFileReader = new System.IO.StreamReader(path);
+           FileEncoding encoding = determineEncoding(path);
 
             //ANSI Handling
            if (encoding == FileEncoding.ANSI)
            {
-              return readANSI(path);
+               StreamReader srtFileReader = new System.IO.StreamReader(path, Encoding.Default);
+               return readANSI(srtFileReader, path);
            }
 
-            //UTF16LE Handling
-            if (encoding == FileEncoding.UTF16_LITTLE_ENDIAN)
-            {
-                return readUTF16LE(path);
-            }
-            //UTF8 Handling
-            if (encoding == FileEncoding.UTF8)
-            {
-                return readUTF8(path);
-            }
+           // //UTF16LE Handling
+           if (encoding == FileEncoding.UTF16_LITTLE_ENDIAN)
+           {
+               StreamReader srtFileReader = new System.IO.StreamReader(path, Encoding.Unicode);
+               return readANSI(srtFileReader, path);
+           }
 
+           // //UTF8 Handling
+           if (encoding == FileEncoding.UTF8)
+           {
+               StreamReader srtFileReader = new System.IO.StreamReader(path, Encoding.UTF8);
+               return readANSI(srtFileReader, path);
+           }
+            
             //TODO: proper error handling
             //case0: no encoding
             //case1: reading errors
+        
             return null;
 
         }
 
-        public void readSRT_OLD(string path)
-        {
-          
-
-         
-
-            //initialize streamreader and write to a string
-            StreamReader srtFileReader = new System.IO.StreamReader(path);
-         //   string srtFile = srtFileReader.ReadToEnd();
-
-
-            string currentLine;
-          //  LineType currentLineType = LineType.LINEBREAK;
-            //LineType lastLineType = LineType.LINEBREAK;
-
-            while (( currentLine = srtFileReader.ReadLine()) != null)
-            {
-                if (IsNumeric(currentLine))
-                {
-
-                  //  currentLineType = LineType.INDEX;
-                    logger.add("INDEX:" + currentLine, Level.DEBUG);
-                }
-          
-                if (currentLine.Contains("-->"))
-                {
-                  //  lastLineType = currentLineType;
-                   // currentLineType = LineType.TIMELINE;
-
-                    logger.add("TIMELINE:"+currentLine, Level.DEBUG);
-                }
-                if (currentLine.Contains("<"))
-                {
-                   // lastLineType = currentLineType;
-                    //currentLineType = LineType.TEXT_START;
-
-                    logger.add("TEXTLINE START:" + currentLine, Level.DEBUG);
-                }
-              //  if (lastLineType == LineType.TEXT_START && (!currentLine.Contains("<") && (!currentLine.Contains(">") )))
-              //  {
-            //        logger.add("TEXTLINE MIDDLE:" + currentLine, Level.DEBUG);
-              //  }
-                if (currentLine.Contains(">") && !(currentLine.Contains("-->")))
-                {
-                  //  lastLineType = currentLineType;
-                   // currentLineType = LineType.TEXT_END;
-
-                    logger.add("TEXTLINE END:" + currentLine, Level.DEBUG);
-                }
-
-
-                else
-                {
-                    logger.add("NOT RECOGNIZED:" + currentLine, Level.DEBUG);
-                }
-            }
-
-            //TODO: analyze srtFile and write to SRT objects
-            
-            
-            
-            
-            //TODO: change return type to SRT Object
-            
-            //logger.add(srtFile,Level.DEBUG);
-        }
+      
 
         private static bool IsNumeric(string s)
         {
@@ -162,28 +96,28 @@ namespace SubEditNET.Loader
             if (rawData[0] == 0xEF && rawData[1] == 0xBB && rawData[2] == 0xBF)
             {
                 encoding = FileEncoding.UTF8;
-                logger.add("[SRTLoader] UTF8", Level.DEBUG);
+                logger.add("UTF8", Level.NORMAL);
 
             }
 
             if (rawData[0] == 0xFF && rawData[1] == 0xFE)
             {
                 encoding = FileEncoding.UTF16_LITTLE_ENDIAN;
-                logger.add("[SRTLoader] UTF16_LITTLE_ENDIAN", Level.DEBUG);
+                logger.add("UTF16_LITTLE_ENDIAN", Level.NORMAL);
 
             }
 
             if (rawData[0] == 0xFE && rawData[1] == 0xFF)
             {
                 encoding = FileEncoding.UTF16_BIG_ENDIAN;
-                logger.add("[SRTLoader] UTF16_BIG_ENDIAN", Level.DEBUG);
+                logger.add("UTF16_BIG_ENDIAN", Level.NORMAL);
 
             }
 
             if (rawData[0] != 0xFE && rawData[0] != 0xFF && rawData[0] != 0xEF)
             {
                 encoding = FileEncoding.ANSI;
-                logger.add("[SRTLoader] ANSI", Level.DEBUG);
+                logger.add("ANSI", Level.NORMAL);
             }
 
 
@@ -192,25 +126,32 @@ namespace SubEditNET.Loader
         }
 
 
-        private SRT readANSI(string path)
+        private SRT readANSI(StreamReader srtFileReader, string path)
         {
-            SRT ansiSRT = new SRT();
+            SRT srt = new SRT();
 
             Entities.SRTToken line = new Entities.SRTToken();
 
-            StreamReader srtFileReader = new System.IO.StreamReader(path);
             string currentLine = null;
+
             while ((currentLine = srtFileReader.ReadLine()) != null)
             {
+             
                 //CHECK IF LINE IS NEW INDEX
                  if (IsNumeric(currentLine))
                  {
+                     if (currentLine != "1")
+                     {
+                         srt.addLine(line);
+                         line = new Entities.SRTToken();
+                     }
+
                      line.setID(Convert.ToInt32(currentLine));
                      logger.add("[SRTLoader] INDEX:" + currentLine, Level.DEBUG);
 
-                 }//ENDIF
+                 }
 
-                //CHECK IF LINE IS TIMELINE
+                ////CHECK IF LINE IS TIMELINE
                  if (currentLine.Contains("-->"))
                  {
                      //char[] arr = currentLine.ToCharArray();
@@ -226,129 +167,22 @@ namespace SubEditNET.Loader
                  if ((IsNumeric(currentLine) == false) && (currentLine.Contains("-->") == false) && ((currentLine == "") == false))
                  {
                      //if line is still empty just add the current line
-                     if (line.getLine() == null || line.getLine() == "")
+                     if (line.getLine() == null || line.getLine() == "") //|| !currentLine.Contains("-->") || !IsNumeric(currentLine)
                      {
                          line.setLine(currentLine);
                      }
                      //if line isnt empty add a space and the current line
                      else
                      {
-                         line.setLine(line.getLine() + " " + currentLine);
+                         line.setLine(line.getLine() + System.Environment.NewLine + currentLine);
                      }
 
                      logger.add("[SRTLoader] CONTENTLINE:" + currentLine, Level.DEBUG);
-                 }//ENDIF
-
-                //CHECK IF LINE IS COMPLETE
-                 if (currentLine == "")
-                 {
-                     //check if line complete
-                     if (line.getID() != 0 && line.getStartTime() != null && line.getEndTime() != null && line.getLine() != null)
-                     {
-                         logger.add("[SRTLoader] LINE COMPLETE!!", Level.DEBUG);
-
-                      //   ansiSRT.addLine(line.id, line.start_time, line.end_time, line.);
-                        ansiSRT.addLine(line);
-                       // line.clearLine();
-                        // line.clearLine();
-                     }
-
-                     //add to list
-
-                     logger.add("[SRTLoader] NEXT SECTION", Level.DEBUG);
-                 }//ENDIF
-
+                 }//ENDIF   
             }
-            return ansiSRT;
+            srt.addLine(line);
+            return srt;
         }
-        private SRT readUTF16LE(string path)
-        {
-            SRT utf16leSRT = new SRT();
-            //string currentLine = null;
-
-            //Entities.SRTLine line = new Entities.SRTLine();
-
-            //while( (currentLine = srtFileReader.ReadLine()) != null ){
-
-            //    if (IsNumeric(currentLine))
-            //    {
-            //        line.Index = Convert.ToInt32(currentLine);
-            //        logger.add("INDEX:" + currentLine, Level.DEBUG);
-
-            //    }
-
-            //    if (currentLine.Contains("-->"))
-            //    {
-            //        line.addStartTime(currentLine.Substring(0, 12));
-            //        logger.add("TIMELINE:" + currentLine, Level.DEBUG);
-            //    }
-
-            //    if ((IsNumeric(currentLine) == false) && (currentLine.Contains("-->") == false) && ( (currentLine == "") == false ) )
-            //    {
-            //        //if line is still empty just add the current line
-            //        if (line.line == null || line.line == "") {
-            //              line.line = currentLine;
-            //        }
-            //        //if line isnt empty add a space and the current line
-            //        else {
-            //            line.line = line.line + " " + currentLine;
-            //        }
-
-            //        logger.add("CONTENTLINE:" + currentLine, Level.DEBUG);
-            //    }
-
-
-            //    if(currentLine==""){
-            //        //check if line complete
-            //        if( line.Index != 0 && line.start_time != null && line.end_time != null && line.line != null){
-            //            logger.add("LINE COMPLETE!!", Level.DEBUG);
-            //        }
-
-            //        //add to list
-            //        srt.addLine(line);
-            //        logger.add("NEXT SECTION", Level.DEBUG);
-
-
-            //    }
-
-
-
-
-
-            //}
-
-            //if (currentLine == null)
-            //{
-
-            //    logger.add("EOF reached!", Level.DEBUG);
-
-            // }
-
-
-
-
-
-
-            return utf16leSRT;
-        }
-        private SRT readUTF16BE(string path)
-        {
-            SRT utf16beSRT = new SRT();
-
-
-
-            return utf16beSRT;
-        }
-
-        private SRT readUTF8(string path)
-        {
-            SRT utf8SRT = new SRT();
-
-
-
-            return utf8SRT;
-        }
-
-
+  
     }
 }
