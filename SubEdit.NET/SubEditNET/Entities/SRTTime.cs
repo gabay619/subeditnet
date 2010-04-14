@@ -27,6 +27,26 @@ namespace SubEditNET.Entities
 
         }
 
+        public int getHour()
+        {
+            return this.hour;
+        }
+
+        public int getMinute()
+        {
+            return this.minute;
+        }
+
+        public int getSecond()
+        {
+            return this.second;
+        }
+
+        public int getMilliSecond()
+        {
+            return this.msecond;
+        }
+
         public string getTime()
         {
             string hourString = hour.ToString();

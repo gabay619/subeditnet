@@ -34,6 +34,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.previewGroupBox = new System.Windows.Forms.GroupBox();
             this.previewTextbox = new System.Windows.Forms.TextBox();
+            this.previewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openSRTFile = new System.Windows.Forms.OpenFileDialog();
             this.DebugLogger = new System.Windows.Forms.TextBox();
             this.logContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -83,7 +84,10 @@
             this.timeshift_second_textinput = new System.Windows.Forms.TextBox();
             this.timeshift_hour_textbox = new System.Windows.Forms.TextBox();
             this.timeshift__minute_textinput = new System.Windows.Forms.TextBox();
-            this.previewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timeshift_hourEnd_inputBox = new System.Windows.Forms.TextBox();
+            this.timeshift_minuteEnd_inputBox = new System.Windows.Forms.TextBox();
+            this.timeshift_secondEnd_inputBox = new System.Windows.Forms.TextBox();
+            this.timeshift_msecEnd_inputBox = new System.Windows.Forms.TextBox();
             this.statusStripMain.SuspendLayout();
             this.previewGroupBox.SuspendLayout();
             this.logContextMenu.SuspendLayout();
@@ -140,6 +144,11 @@
             this.previewTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.previewTextbox.Size = new System.Drawing.Size(387, 242);
             this.previewTextbox.TabIndex = 0;
+            // 
+            // previewContextMenuStrip
+            // 
+            this.previewContextMenuStrip.Name = "previewContextMenuStrip";
+            this.previewContextMenuStrip.Size = new System.Drawing.Size(61, 4);
             // 
             // openSRTFile
             // 
@@ -229,14 +238,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -434,9 +443,9 @@
             this.convertGroupBox.Controls.Add(this.convertLabel);
             this.convertGroupBox.Controls.Add(this.cp1252toUCButton);
             this.convertGroupBox.Controls.Add(this.cp1251toUCButton);
-            this.convertGroupBox.Location = new System.Drawing.Point(7, 163);
+            this.convertGroupBox.Location = new System.Drawing.Point(7, 184);
             this.convertGroupBox.Name = "convertGroupBox";
-            this.convertGroupBox.Size = new System.Drawing.Size(352, 83);
+            this.convertGroupBox.Size = new System.Drawing.Size(352, 82);
             this.convertGroupBox.TabIndex = 10;
             this.convertGroupBox.TabStop = false;
             this.convertGroupBox.Text = "Convert";
@@ -444,7 +453,7 @@
             // convertLabel
             // 
             this.convertLabel.AutoSize = true;
-            this.convertLabel.Location = new System.Drawing.Point(30, 57);
+            this.convertLabel.Location = new System.Drawing.Point(32, 57);
             this.convertLabel.Name = "convertLabel";
             this.convertLabel.Size = new System.Drawing.Size(283, 17);
             this.convertLabel.TabIndex = 2;
@@ -492,6 +501,10 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.timeshift_msecEnd_inputBox);
+            this.groupBox4.Controls.Add(this.timeshift_secondEnd_inputBox);
+            this.groupBox4.Controls.Add(this.timeshift_minuteEnd_inputBox);
+            this.groupBox4.Controls.Add(this.timeshift_hourEnd_inputBox);
             this.groupBox4.Controls.Add(this.timeShiftMinusButton);
             this.groupBox4.Controls.Add(this.timeshift_msecond_textinput);
             this.groupBox4.Controls.Add(this.timeShiftPlusButton);
@@ -500,33 +513,32 @@
             this.groupBox4.Controls.Add(this.timeshift__minute_textinput);
             this.groupBox4.Location = new System.Drawing.Point(6, 94);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(353, 63);
+            this.groupBox4.Size = new System.Drawing.Size(353, 84);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Time shift";
             // 
             // timeShiftMinusButton
             // 
-            this.timeShiftMinusButton.Location = new System.Drawing.Point(270, 23);
+            this.timeShiftMinusButton.Location = new System.Drawing.Point(36, 34);
             this.timeShiftMinusButton.Name = "timeShiftMinusButton";
             this.timeShiftMinusButton.Size = new System.Drawing.Size(35, 26);
             this.timeShiftMinusButton.TabIndex = 1;
             this.timeShiftMinusButton.Text = "-";
             this.timeShiftMinusButton.UseVisualStyleBackColor = true;
-            this.timeShiftMinusButton.Click += new System.EventHandler(this.button2_Click_1);
+            this.timeShiftMinusButton.Click += new System.EventHandler(this.timeShiftMinusButton_Click);
             // 
             // timeshift_msecond_textinput
             // 
-            this.timeshift_msecond_textinput.Location = new System.Drawing.Point(173, 24);
+            this.timeshift_msecond_textinput.Location = new System.Drawing.Point(211, 22);
             this.timeshift_msecond_textinput.Name = "timeshift_msecond_textinput";
             this.timeshift_msecond_textinput.Size = new System.Drawing.Size(50, 25);
             this.timeshift_msecond_textinput.TabIndex = 6;
-            this.timeshift_msecond_textinput.Text = "ms";
             this.timeshift_msecond_textinput.TextChanged += new System.EventHandler(this.timeshift_msecond_textinput_TextChanged);
             // 
             // timeShiftPlusButton
             // 
-            this.timeShiftPlusButton.Location = new System.Drawing.Point(229, 23);
+            this.timeShiftPlusButton.Location = new System.Drawing.Point(281, 34);
             this.timeShiftPlusButton.Name = "timeShiftPlusButton";
             this.timeShiftPlusButton.Size = new System.Drawing.Size(35, 26);
             this.timeShiftPlusButton.TabIndex = 0;
@@ -536,35 +548,55 @@
             // 
             // timeshift_second_textinput
             // 
-            this.timeshift_second_textinput.Location = new System.Drawing.Point(133, 24);
+            this.timeshift_second_textinput.Location = new System.Drawing.Point(171, 22);
             this.timeshift_second_textinput.Name = "timeshift_second_textinput";
             this.timeshift_second_textinput.Size = new System.Drawing.Size(34, 25);
             this.timeshift_second_textinput.TabIndex = 5;
-            this.timeshift_second_textinput.Text = "ss";
             this.timeshift_second_textinput.TextChanged += new System.EventHandler(this.timeshift_second_textinput_TextChanged);
             // 
             // timeshift_hour_textbox
             // 
-            this.timeshift_hour_textbox.Location = new System.Drawing.Point(53, 24);
+            this.timeshift_hour_textbox.Location = new System.Drawing.Point(91, 22);
             this.timeshift_hour_textbox.Name = "timeshift_hour_textbox";
             this.timeshift_hour_textbox.Size = new System.Drawing.Size(34, 25);
             this.timeshift_hour_textbox.TabIndex = 3;
-            this.timeshift_hour_textbox.Text = "hh";
             this.timeshift_hour_textbox.TextChanged += new System.EventHandler(this.timeshift_hour_textbox_TextChanged);
             // 
             // timeshift__minute_textinput
             // 
-            this.timeshift__minute_textinput.Location = new System.Drawing.Point(93, 24);
+            this.timeshift__minute_textinput.Location = new System.Drawing.Point(131, 22);
             this.timeshift__minute_textinput.Name = "timeshift__minute_textinput";
             this.timeshift__minute_textinput.Size = new System.Drawing.Size(34, 25);
             this.timeshift__minute_textinput.TabIndex = 4;
-            this.timeshift__minute_textinput.Text = "mm";
             this.timeshift__minute_textinput.TextChanged += new System.EventHandler(this.timeshift__minute_textinput_TextChanged);
             // 
-            // previewContextMenuStrip
+            // timeshift_hourEnd_inputBox
             // 
-            this.previewContextMenuStrip.Name = "previewContextMenuStrip";
-            this.previewContextMenuStrip.Size = new System.Drawing.Size(61, 4);
+            this.timeshift_hourEnd_inputBox.Location = new System.Drawing.Point(91, 53);
+            this.timeshift_hourEnd_inputBox.Name = "timeshift_hourEnd_inputBox";
+            this.timeshift_hourEnd_inputBox.Size = new System.Drawing.Size(34, 25);
+            this.timeshift_hourEnd_inputBox.TabIndex = 7;
+            // 
+            // timeshift_minuteEnd_inputBox
+            // 
+            this.timeshift_minuteEnd_inputBox.Location = new System.Drawing.Point(131, 53);
+            this.timeshift_minuteEnd_inputBox.Name = "timeshift_minuteEnd_inputBox";
+            this.timeshift_minuteEnd_inputBox.Size = new System.Drawing.Size(34, 25);
+            this.timeshift_minuteEnd_inputBox.TabIndex = 8;
+            // 
+            // timeshift_secondEnd_inputBox
+            // 
+            this.timeshift_secondEnd_inputBox.Location = new System.Drawing.Point(171, 53);
+            this.timeshift_secondEnd_inputBox.Name = "timeshift_secondEnd_inputBox";
+            this.timeshift_secondEnd_inputBox.Size = new System.Drawing.Size(34, 25);
+            this.timeshift_secondEnd_inputBox.TabIndex = 9;
+            // 
+            // timeshift_msecEnd_inputBox
+            // 
+            this.timeshift_msecEnd_inputBox.Location = new System.Drawing.Point(211, 53);
+            this.timeshift_msecEnd_inputBox.Name = "timeshift_msecEnd_inputBox";
+            this.timeshift_msecEnd_inputBox.Size = new System.Drawing.Size(50, 25);
+            this.timeshift_msecEnd_inputBox.TabIndex = 10;
             // 
             // MainForm
             // 
@@ -664,6 +696,10 @@
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip previewContextMenuStrip;
+        private System.Windows.Forms.TextBox timeshift_msecEnd_inputBox;
+        private System.Windows.Forms.TextBox timeshift_secondEnd_inputBox;
+        private System.Windows.Forms.TextBox timeshift_minuteEnd_inputBox;
+        private System.Windows.Forms.TextBox timeshift_hourEnd_inputBox;
     }
 }
 
