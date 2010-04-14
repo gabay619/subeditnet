@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SubEditNET.Loader.Entities;
+using SubEditNET.Entities;
 
-namespace SubEditNET.Loader
+namespace SubEditNET.Entities
 {
     class SRT
     {

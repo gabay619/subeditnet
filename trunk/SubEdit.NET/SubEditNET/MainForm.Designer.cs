@@ -68,6 +68,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSaveButton = new System.Windows.Forms.ToolStripButton();
             this.controlGroupBox = new System.Windows.Forms.GroupBox();
+            this.convertGroupBox = new System.Windows.Forms.GroupBox();
+            this.convertLabel = new System.Windows.Forms.Label();
+            this.cp1252toUCButton = new System.Windows.Forms.Button();
+            this.cp1251toUCButton = new System.Windows.Forms.Button();
             this.currentFileGroupBox = new System.Windows.Forms.GroupBox();
             this.currentFileTextbox = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -77,10 +81,8 @@
             this.timeshift_second_textinput = new System.Windows.Forms.TextBox();
             this.timeshift_hour_textbox = new System.Windows.Forms.TextBox();
             this.timeshift__minute_textinput = new System.Windows.Forms.TextBox();
-            this.convertGroupBox = new System.Windows.Forms.GroupBox();
-            this.cp1251toUCButton = new System.Windows.Forms.Button();
-            this.cp1252toUCButton = new System.Windows.Forms.Button();
-            this.convertLabel = new System.Windows.Forms.Label();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.previewGroupBox.SuspendLayout();
             this.logContextMenu.SuspendLayout();
@@ -88,9 +90,9 @@
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.controlGroupBox.SuspendLayout();
+            this.convertGroupBox.SuspendLayout();
             this.currentFileGroupBox.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.convertGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -155,21 +157,23 @@
             this.DebugLogger.Size = new System.Drawing.Size(758, 91);
             this.DebugLogger.TabIndex = 3;
             this.DebugLogger.WordWrap = false;
-            this.DebugLogger.TextChanged += new System.EventHandler(this.DebugLogger_TextChanged);
             this.DebugLogger.ContextMenuStripChanged += new System.EventHandler(this.DebugLogger_ContextMenuStripChanged);
+            this.DebugLogger.TextChanged += new System.EventHandler(this.DebugLogger_TextChanged);
             // 
             // logContextMenu
             // 
             this.logContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearToolStripMenuItem});
+            this.clearToolStripMenuItem,
+            this.selectAllToolStripMenuItem,
+            this.copyToolStripMenuItem});
             this.logContextMenu.Name = "logContextMenu";
-            this.logContextMenu.Size = new System.Drawing.Size(102, 26);
+            this.logContextMenu.Size = new System.Drawing.Size(153, 92);
             this.logContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.logContextMenu_Opening);
             // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -409,6 +413,45 @@
             this.controlGroupBox.TabStop = false;
             this.controlGroupBox.Text = "Control";
             // 
+            // convertGroupBox
+            // 
+            this.convertGroupBox.Controls.Add(this.convertLabel);
+            this.convertGroupBox.Controls.Add(this.cp1252toUCButton);
+            this.convertGroupBox.Controls.Add(this.cp1251toUCButton);
+            this.convertGroupBox.Location = new System.Drawing.Point(7, 163);
+            this.convertGroupBox.Name = "convertGroupBox";
+            this.convertGroupBox.Size = new System.Drawing.Size(352, 83);
+            this.convertGroupBox.TabIndex = 10;
+            this.convertGroupBox.TabStop = false;
+            this.convertGroupBox.Text = "Convert";
+            // 
+            // convertLabel
+            // 
+            this.convertLabel.AutoSize = true;
+            this.convertLabel.Location = new System.Drawing.Point(30, 57);
+            this.convertLabel.Name = "convertLabel";
+            this.convertLabel.Size = new System.Drawing.Size(283, 17);
+            this.convertLabel.TabIndex = 2;
+            this.convertLabel.Text = "CP1251 is ASCII Cyrillic, CP1252 is ASCI Western";
+            // 
+            // cp1252toUCButton
+            // 
+            this.cp1252toUCButton.Location = new System.Drawing.Point(172, 24);
+            this.cp1252toUCButton.Name = "cp1252toUCButton";
+            this.cp1252toUCButton.Size = new System.Drawing.Size(158, 30);
+            this.cp1252toUCButton.TabIndex = 1;
+            this.cp1252toUCButton.Text = "CP1252 to Unicode";
+            this.cp1252toUCButton.UseVisualStyleBackColor = true;
+            // 
+            // cp1251toUCButton
+            // 
+            this.cp1251toUCButton.Location = new System.Drawing.Point(15, 24);
+            this.cp1251toUCButton.Name = "cp1251toUCButton";
+            this.cp1251toUCButton.Size = new System.Drawing.Size(151, 30);
+            this.cp1251toUCButton.TabIndex = 0;
+            this.cp1251toUCButton.Text = "CP1251 to Unicode";
+            this.cp1251toUCButton.UseVisualStyleBackColor = true;
+            // 
             // currentFileGroupBox
             // 
             this.currentFileGroupBox.Controls.Add(this.currentFileTextbox);
@@ -470,6 +513,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // timeshift_second_textinput
             // 
@@ -498,44 +542,18 @@
             this.timeshift__minute_textinput.Text = "mm";
             this.timeshift__minute_textinput.TextChanged += new System.EventHandler(this.timeshift__minute_textinput_TextChanged);
             // 
-            // convertGroupBox
+            // selectAllToolStripMenuItem
             // 
-            this.convertGroupBox.Controls.Add(this.convertLabel);
-            this.convertGroupBox.Controls.Add(this.cp1252toUCButton);
-            this.convertGroupBox.Controls.Add(this.cp1251toUCButton);
-            this.convertGroupBox.Location = new System.Drawing.Point(7, 163);
-            this.convertGroupBox.Name = "convertGroupBox";
-            this.convertGroupBox.Size = new System.Drawing.Size(352, 83);
-            this.convertGroupBox.TabIndex = 10;
-            this.convertGroupBox.TabStop = false;
-            this.convertGroupBox.Text = "Convert";
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.selectAllToolStripMenuItem.Text = "Select All";
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
-            // cp1251toUCButton
+            // copyToolStripMenuItem
             // 
-            this.cp1251toUCButton.Location = new System.Drawing.Point(15, 24);
-            this.cp1251toUCButton.Name = "cp1251toUCButton";
-            this.cp1251toUCButton.Size = new System.Drawing.Size(151, 30);
-            this.cp1251toUCButton.TabIndex = 0;
-            this.cp1251toUCButton.Text = "CP1251 to Unicode";
-            this.cp1251toUCButton.UseVisualStyleBackColor = true;
-            // 
-            // cp1252toUCButton
-            // 
-            this.cp1252toUCButton.Location = new System.Drawing.Point(172, 24);
-            this.cp1252toUCButton.Name = "cp1252toUCButton";
-            this.cp1252toUCButton.Size = new System.Drawing.Size(158, 30);
-            this.cp1252toUCButton.TabIndex = 1;
-            this.cp1252toUCButton.Text = "CP1252 to Unicode";
-            this.cp1252toUCButton.UseVisualStyleBackColor = true;
-            // 
-            // convertLabel
-            // 
-            this.convertLabel.AutoSize = true;
-            this.convertLabel.Location = new System.Drawing.Point(30, 57);
-            this.convertLabel.Name = "convertLabel";
-            this.convertLabel.Size = new System.Drawing.Size(283, 17);
-            this.convertLabel.TabIndex = 2;
-            this.convertLabel.Text = "CP1251 is ASCII Cyrillic, CP1252 is ASCI Western";
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
             // 
             // MainForm
             // 
@@ -567,12 +585,12 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.controlGroupBox.ResumeLayout(false);
+            this.convertGroupBox.ResumeLayout(false);
+            this.convertGroupBox.PerformLayout();
             this.currentFileGroupBox.ResumeLayout(false);
             this.currentFileGroupBox.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.convertGroupBox.ResumeLayout(false);
-            this.convertGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -632,6 +650,8 @@
         private System.Windows.Forms.Label convertLabel;
         private System.Windows.Forms.Button cp1252toUCButton;
         private System.Windows.Forms.Button cp1251toUCButton;
+        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }
 
