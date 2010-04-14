@@ -69,7 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\FileCache.cs" />
+    <Compile Include="TimeShifter\TimeShifter.cs" />
     <Compile Include="Converter\CP1251toUnicodeConverter.cs" />
     <Compile Include="Entities\SRT.cs" />
     <Compile Include="Entities\SRTToken.cs" />
