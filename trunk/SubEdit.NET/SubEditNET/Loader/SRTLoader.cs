@@ -156,8 +156,8 @@ namespace SubEditNET.Loader
                  {
                      //char[] arr = currentLine.ToCharArray();
 
-                     line.setStartTime(currentLine.Substring(0, 12));
-                     line.setEndTime(currentLine.Substring(17, 12));
+                     line.setStartTimeString(currentLine.Substring(0, 12));
+                     line.setEndTimeString(currentLine.Substring(17, 12));
                      //logger.add("s_substr: " + line.start_time.getStartTime(), Level.DEBUG);
                      //logger.add("e_substr: " + line.end_time.getEndTime(), Level.DEBUG);
                      logger.add("[SRTLoader] TIMELINE:" + currentLine, Level.DEBUG);

@@ -7,6 +7,18 @@ namespace SubEditNET.Entities
 {
     class SRTTime
     {
+        public SRTTime()
+        {
+
+        }
+
+        public SRTTime(int h, int m, int s, int ms)
+        {
+            this.hour = h;
+            this.minute = m;
+            this.second = s;
+            this.msecond = ms;
+        }
 
         private int hour;
         private int minute;
@@ -25,6 +37,14 @@ namespace SubEditNET.Entities
             second = Convert.ToInt32(s2[0]);
             msecond = Convert.ToInt32(s2[1]);
 
+        }
+
+        public void setTime(SRTTime time)
+        {
+            this.hour = time.hour;
+            this.minute = time.minute;
+            this.second = time.second;
+            this.msecond = time.msecond;
         }
 
         public int getHour()
