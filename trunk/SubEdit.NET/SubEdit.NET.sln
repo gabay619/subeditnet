@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubEdit.NET", "SubEditNET\SubEdit.NET.csproj", "{BF5F446E-BDCF-48F4-B94A-B70CD295E7C2}"
 EndProject
 Global
