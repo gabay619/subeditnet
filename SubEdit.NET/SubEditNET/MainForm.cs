@@ -130,7 +130,7 @@ namespace SubEditNET
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Version 1.0 - currentTrunk \nAuthor: M.Baehr \nE-Mail: nerom86@googlemail.com", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Version 1.0 - currentTrunk \nE-Mail: nerom86@googlemail.com", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void spanishEspanolToolStripMenuItem_Click(object sender, EventArgs e)

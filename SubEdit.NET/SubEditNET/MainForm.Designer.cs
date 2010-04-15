@@ -46,7 +46,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,16 +77,16 @@
             this.currentFileGroupBox = new System.Windows.Forms.GroupBox();
             this.currentFileTextbox = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.timeshift_msecEnd_inputBox = new System.Windows.Forms.TextBox();
+            this.timeshift_secondEnd_inputBox = new System.Windows.Forms.TextBox();
+            this.timeshift_minuteEnd_inputBox = new System.Windows.Forms.TextBox();
+            this.timeshift_hourEnd_inputBox = new System.Windows.Forms.TextBox();
             this.timeShiftMinusButton = new System.Windows.Forms.Button();
             this.timeshift_msecond_textinput = new System.Windows.Forms.TextBox();
             this.timeShiftPlusButton = new System.Windows.Forms.Button();
             this.timeshift_second_textinput = new System.Windows.Forms.TextBox();
             this.timeshift_hour_textbox = new System.Windows.Forms.TextBox();
             this.timeshift__minute_textinput = new System.Windows.Forms.TextBox();
-            this.timeshift_hourEnd_inputBox = new System.Windows.Forms.TextBox();
-            this.timeshift_minuteEnd_inputBox = new System.Windows.Forms.TextBox();
-            this.timeshift_secondEnd_inputBox = new System.Windows.Forms.TextBox();
-            this.timeshift_msecEnd_inputBox = new System.Windows.Forms.TextBox();
             this.statusStripMain.SuspendLayout();
             this.previewGroupBox.SuspendLayout();
             this.logContextMenu.SuspendLayout();
@@ -216,7 +215,6 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.viewToolStripMenuItem,
             this.optionsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
@@ -238,22 +236,16 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
             // 
             // optionsToolStripMenuItem
             // 
@@ -273,7 +265,7 @@
             this.russianРусскийToolStripMenuItem,
             this.spanishEspanolToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.languageToolStripMenuItem.Text = "Language";
             // 
             // englishToolStripMenuItem
@@ -309,8 +301,9 @@
             // 
             // themeToolStripMenuItem
             // 
+            this.themeToolStripMenuItem.Enabled = false;
             this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-            this.themeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.themeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.themeToolStripMenuItem.Text = "Theme";
             // 
             // helpToolStripMenuItem
@@ -332,24 +325,28 @@
             // 
             // howDoIToolStripMenuItem
             // 
+            this.howDoIToolStripMenuItem.Enabled = false;
             this.howDoIToolStripMenuItem.Name = "howDoIToolStripMenuItem";
             this.howDoIToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.howDoIToolStripMenuItem.Text = "How Do I";
             // 
             // searchToolStripMenuItem
             // 
+            this.searchToolStripMenuItem.Enabled = false;
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.searchToolStripMenuItem.Text = "Search";
             // 
             // contentsToolStripMenuItem
             // 
+            this.contentsToolStripMenuItem.Enabled = false;
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
             this.contentsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.contentsToolStripMenuItem.Text = "Contents";
             // 
             // indexToolStripMenuItem
             // 
+            this.indexToolStripMenuItem.Enabled = false;
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
             this.indexToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.indexToolStripMenuItem.Text = "Index";
@@ -361,6 +358,7 @@
             // 
             // checkForUpdatesToolStripMenuItem
             // 
+            this.checkForUpdatesToolStripMenuItem.Enabled = false;
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
             this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
@@ -443,6 +441,7 @@
             this.convertGroupBox.Controls.Add(this.convertLabel);
             this.convertGroupBox.Controls.Add(this.cp1252toUCButton);
             this.convertGroupBox.Controls.Add(this.cp1251toUCButton);
+            this.convertGroupBox.Enabled = false;
             this.convertGroupBox.Location = new System.Drawing.Point(7, 184);
             this.convertGroupBox.Name = "convertGroupBox";
             this.convertGroupBox.Size = new System.Drawing.Size(352, 82);
@@ -518,6 +517,34 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Time shift";
             // 
+            // timeshift_msecEnd_inputBox
+            // 
+            this.timeshift_msecEnd_inputBox.Location = new System.Drawing.Point(211, 53);
+            this.timeshift_msecEnd_inputBox.Name = "timeshift_msecEnd_inputBox";
+            this.timeshift_msecEnd_inputBox.Size = new System.Drawing.Size(50, 25);
+            this.timeshift_msecEnd_inputBox.TabIndex = 10;
+            // 
+            // timeshift_secondEnd_inputBox
+            // 
+            this.timeshift_secondEnd_inputBox.Location = new System.Drawing.Point(171, 53);
+            this.timeshift_secondEnd_inputBox.Name = "timeshift_secondEnd_inputBox";
+            this.timeshift_secondEnd_inputBox.Size = new System.Drawing.Size(34, 25);
+            this.timeshift_secondEnd_inputBox.TabIndex = 9;
+            // 
+            // timeshift_minuteEnd_inputBox
+            // 
+            this.timeshift_minuteEnd_inputBox.Location = new System.Drawing.Point(131, 53);
+            this.timeshift_minuteEnd_inputBox.Name = "timeshift_minuteEnd_inputBox";
+            this.timeshift_minuteEnd_inputBox.Size = new System.Drawing.Size(34, 25);
+            this.timeshift_minuteEnd_inputBox.TabIndex = 8;
+            // 
+            // timeshift_hourEnd_inputBox
+            // 
+            this.timeshift_hourEnd_inputBox.Location = new System.Drawing.Point(91, 53);
+            this.timeshift_hourEnd_inputBox.Name = "timeshift_hourEnd_inputBox";
+            this.timeshift_hourEnd_inputBox.Size = new System.Drawing.Size(34, 25);
+            this.timeshift_hourEnd_inputBox.TabIndex = 7;
+            // 
             // timeShiftMinusButton
             // 
             this.timeShiftMinusButton.Location = new System.Drawing.Point(36, 34);
@@ -569,34 +596,6 @@
             this.timeshift__minute_textinput.Size = new System.Drawing.Size(34, 25);
             this.timeshift__minute_textinput.TabIndex = 4;
             this.timeshift__minute_textinput.TextChanged += new System.EventHandler(this.timeshift__minute_textinput_TextChanged);
-            // 
-            // timeshift_hourEnd_inputBox
-            // 
-            this.timeshift_hourEnd_inputBox.Location = new System.Drawing.Point(91, 53);
-            this.timeshift_hourEnd_inputBox.Name = "timeshift_hourEnd_inputBox";
-            this.timeshift_hourEnd_inputBox.Size = new System.Drawing.Size(34, 25);
-            this.timeshift_hourEnd_inputBox.TabIndex = 7;
-            // 
-            // timeshift_minuteEnd_inputBox
-            // 
-            this.timeshift_minuteEnd_inputBox.Location = new System.Drawing.Point(131, 53);
-            this.timeshift_minuteEnd_inputBox.Name = "timeshift_minuteEnd_inputBox";
-            this.timeshift_minuteEnd_inputBox.Size = new System.Drawing.Size(34, 25);
-            this.timeshift_minuteEnd_inputBox.TabIndex = 8;
-            // 
-            // timeshift_secondEnd_inputBox
-            // 
-            this.timeshift_secondEnd_inputBox.Location = new System.Drawing.Point(171, 53);
-            this.timeshift_secondEnd_inputBox.Name = "timeshift_secondEnd_inputBox";
-            this.timeshift_secondEnd_inputBox.Size = new System.Drawing.Size(34, 25);
-            this.timeshift_secondEnd_inputBox.TabIndex = 9;
-            // 
-            // timeshift_msecEnd_inputBox
-            // 
-            this.timeshift_msecEnd_inputBox.Location = new System.Drawing.Point(211, 53);
-            this.timeshift_msecEnd_inputBox.Name = "timeshift_msecEnd_inputBox";
-            this.timeshift_msecEnd_inputBox.Size = new System.Drawing.Size(50, 25);
-            this.timeshift_msecEnd_inputBox.TabIndex = 10;
             // 
             // MainForm
             // 
@@ -653,7 +652,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
