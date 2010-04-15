@@ -112,7 +112,6 @@
     </Compile>
     <Compile Include="Saver\SRTSaver.cs" />
     <Compile Include="Status\ProgressBarController.cs" />
-    <Compile Include="Time\TimeEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Folder_Open.png" />

@@ -147,7 +147,7 @@ namespace SubEditNET.Loader
                      }
 
                      line.setID(Convert.ToInt32(currentLine));
-                     logger.add("[SRTLoader] INDEX:" + currentLine, Level.DEBUG);
+                     logger.add("INDEX:" + currentLine, Level.DEBUG);
 
                  }
 
@@ -160,7 +160,7 @@ namespace SubEditNET.Loader
                      line.setEndTimeString(currentLine.Substring(17, 12));
                      //logger.add("s_substr: " + line.start_time.getStartTime(), Level.DEBUG);
                      //logger.add("e_substr: " + line.end_time.getEndTime(), Level.DEBUG);
-                     logger.add("[SRTLoader] TIMELINE:" + currentLine, Level.DEBUG);
+                     logger.add("TIMELINE:" + currentLine, Level.DEBUG);
                  }//ENDIF
 
                 //CHECK IF LINE IS CONTENT LINE
@@ -177,7 +177,7 @@ namespace SubEditNET.Loader
                          line.setLine(line.getLine() + System.Environment.NewLine + currentLine);
                      }
 
-                     logger.add("[SRTLoader] CONTENTLINE:" + currentLine, Level.DEBUG);
+                     logger.add("CONTENTLINE:" + currentLine, Level.DEBUG);
                  }//ENDIF   
             }
             srt.addLine(line);
