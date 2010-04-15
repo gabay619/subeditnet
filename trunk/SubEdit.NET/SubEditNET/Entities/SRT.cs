@@ -6,32 +6,22 @@ using SubEditNET.Entities;
 
 namespace SubEditNET.Entities
 {
+    /// <summary>
+    /// This class represents an SRT Object, which is used to handle SRT-Files in this program.
+    /// </summary>
     class SRT
     {
 
        private List<SRTToken> srtlines = new List<SRTToken>();
-        //String encoding;
-
-
-        //public void addLine(int index,string starttime, string endtime, string line)
-        //{
-        //    SRTLine newLine = new SRTLine();
-        //    newLine.id = index;
-
-        //    newLine.addStartTime(starttime);
-        //    newLine.addEndTime(endtime);
-     
-        //    newLine.line = line;
-
-        //    srtlines.Add(newLine);
-        //}
-
+        
+       /// <summary>
+       /// This methods adds a new subtitle line (token) which contains an Index, StartTime, EndTime and the Content
+       /// </summary>
+       /// <param name="line"></param>
        public void addLine(SRTToken line)
        {
            srtlines.Add(line);
        }
-
-
 
         public string printSRT(){
             string content = "";
