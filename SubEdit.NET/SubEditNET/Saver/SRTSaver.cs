@@ -42,7 +42,7 @@ namespace SubEditNET.Saver
         public void saveSRT(SRT srt, String path)
         {
             // create a writer and open the file
-            TextWriter saveLog = new StreamWriter("C:\\savelog.srt");
+            TextWriter saveLog = new StreamWriter(path);
 
             // write a line of text to the file
             //saveLog.WriteLine(DateTime.Now);

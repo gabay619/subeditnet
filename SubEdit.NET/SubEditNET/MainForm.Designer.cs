@@ -87,6 +87,7 @@
             this.timeshift_second_textinput = new System.Windows.Forms.TextBox();
             this.timeshift_hour_textbox = new System.Windows.Forms.TextBox();
             this.timeshift__minute_textinput = new System.Windows.Forms.TextBox();
+            this.saveSRTFile = new System.Windows.Forms.SaveFileDialog();
             this.statusStripMain.SuspendLayout();
             this.previewGroupBox.SuspendLayout();
             this.logContextMenu.SuspendLayout();
@@ -236,14 +237,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -265,7 +266,7 @@
             this.russianРусскийToolStripMenuItem,
             this.spanishEspanolToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.languageToolStripMenuItem.Text = "Language";
             // 
             // englishToolStripMenuItem
@@ -303,7 +304,7 @@
             // 
             this.themeToolStripMenuItem.Enabled = false;
             this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-            this.themeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.themeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.themeToolStripMenuItem.Text = "Theme";
             // 
             // helpToolStripMenuItem
@@ -597,6 +598,10 @@
             this.timeshift__minute_textinput.TabIndex = 4;
             this.timeshift__minute_textinput.TextChanged += new System.EventHandler(this.timeshift__minute_textinput_TextChanged);
             // 
+            // saveSRTFile
+            // 
+            this.saveSRTFile.FileOk += new System.ComponentModel.CancelEventHandler(this.saveSRTFile_FileOk);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -698,6 +703,7 @@
         private System.Windows.Forms.TextBox timeshift_secondEnd_inputBox;
         private System.Windows.Forms.TextBox timeshift_minuteEnd_inputBox;
         private System.Windows.Forms.TextBox timeshift_hourEnd_inputBox;
+        private System.Windows.Forms.SaveFileDialog saveSRTFile;
     }
 }
 

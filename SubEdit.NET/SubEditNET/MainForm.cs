@@ -273,25 +273,23 @@ namespace SubEditNET
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+
             if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
             {
                 MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Do you want to save the file? This can not be undone.", "Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                SRTSaver saver = SRTSaver.Instance;
-                TimeShifter shifter = TimeShifter.Instance;
 
-                SRTTime newStartTime = new SRTTime(Convert.ToInt32(timeshift_hour_textbox.Text),
-                                                    Convert.ToInt32(timeshift__minute_textinput.Text),
-                                                    Convert.ToInt32(timeshift_second_textinput.Text),
-                                                    Convert.ToInt32(timeshift_msecond_textinput.Text));
+                saveSRTFile.Filter = "SRT File (*.srt)|*.srt|Text File (*.txt)|*.txt";
 
-                shifter.shiftTime(currentSRT, newStartTime);
+                if (saveSRTFile.ShowDialog() == DialogResult.OK)
+                {
 
-                saver.saveSRT(currentSRT, currentFileTextbox.Text);
+                }
+
             }
+       
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -485,6 +483,25 @@ namespace SubEditNET
 
             }
            
+        }
+
+        private void saveSRTFile_FileOk(object sender, CancelEventArgs e)
+        {
+           
+            MessageBox.Show("Do you want to save the file? This can not be undone.", "Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            SRTSaver saver = SRTSaver.Instance;
+            TimeShifter shifter = TimeShifter.Instance;
+
+            SRTTime newStartTime = new SRTTime(Convert.ToInt32(timeshift_hour_textbox.Text),
+                                                Convert.ToInt32(timeshift__minute_textinput.Text),
+                                                Convert.ToInt32(timeshift_second_textinput.Text),
+                                                Convert.ToInt32(timeshift_msecond_textinput.Text));
+
+            shifter.shiftTime(currentSRT, newStartTime);
+
+            saver.saveSRT(currentSRT, saveSRTFile.FileName);
+            
+
         }
 
       
