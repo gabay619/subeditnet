@@ -156,15 +156,19 @@
     <Compile Include="Status\ProgressBarController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\strt.png" />
     <None Include="Resources\Folder_Open.png" />
     <None Include="Resources\FloppyDisk.png" />
+    <None Include="Resources\backwd.png" />
     <Content Include="Resources\Fonts.ico" />
+    <None Include="Resources\fwd.png" />
     <Content Include="Resources\Localisation\de-DE.txt" />
     <Content Include="Resources\Localisation\en-GB.txt" />
     <Content Include="Resources\Localisation\ru-RU.txt" />
     <Content Include="Resources\ppalicon.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\controls\" />
     <Folder Include="Resources\Icons\" />
   </ItemGroup>
   <ItemGroup>

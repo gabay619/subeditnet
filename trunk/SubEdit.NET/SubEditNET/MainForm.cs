@@ -17,7 +17,10 @@ namespace SubEditNET
 {
     public partial class MainForm : Form
     {
+        //Create or recall the logger Instance
         DebugLogger logger = SubEditNET.Logger.DebugLogger.Instance;
+
+        //Create an empty SRT Object to store SRT Files
         SRT currentSRT = new SRT();
 
         public MainForm()
@@ -26,29 +29,26 @@ namespace SubEditNET
             InitializeComponent();
 
             this.timeshift_hour_textbox.MaxLength = 2;
-            this.timeshift__minute_textinput.MaxLength = 2;
+            this.timeshift_minute_textinput.MaxLength = 2;
             this.timeshift_second_textinput.MaxLength = 2;
             this.timeshift_msecond_textinput.MaxLength = 3;
 
-            int currentScreenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-            int currentScreenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+            //int currentScreenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+            //int currentScreenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
 
-            if (currentScreenHeight <= 600)
-            {
+            //if (currentScreenHeight <= 600)
+            //{
                 //scale the group boxes
-                previewGroupBox.Size = new Size(400,150);
-                logGroupBox.Size = new Size();
-                this.Size = new Size();
-            }
-
-           
+                //previewGroupBox.Size = new Size(400,150);
+                //logGroupBox.Size = new Size();
+                //this.Size = new Size();
+            //}
 
         }
 
         private void openSRTFile_FileOk(object sender, CancelEventArgs e)
         {
-         
-           
+
             //set path of the file to read
             string srt_to_read = string.Empty;
             srt_to_read = openSRTFile.FileName;
@@ -57,39 +57,23 @@ namespace SubEditNET
             SRTLoader loader = SRTLoader.Instance;
             SRT newSRT = loader.readSRT(srt_to_read);
 
-          //  previewTextbox.Text = newSRT.printSRT();
-
             //add message to logger
             currentFileTextbox.Text = srt_to_read;
-          //  logger.add("openSRTFile_FileOk called:" + srt_to_read, Level.DEBUG);
+           
+            //logger message
             logger.add("successfully read file with lines:", Level.DEBUG);
             DebugLogger.Text = logger.getCurrentLog();
 
             currentSRT = newSRT;
 
             timeshift_hour_textbox.Text = currentSRT.getToken(0).getStartTime().getHour().ToString();
-            timeshift__minute_textinput.Text = currentSRT.getToken(0).getStartTime().getMinute().ToString();
+            timeshift_minute_textinput.Text = currentSRT.getToken(0).getStartTime().getMinute().ToString();
             timeshift_second_textinput.Text = currentSRT.getToken(0).getStartTime().getSecond().ToString();
-            timeshift_msecond_textinput.Text = currentSRT.getToken(0).getStartTime().getMilliSecond().ToString();
-
-            timeshift_hourEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getHour().ToString();
-            timeshift_minuteEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getMinute().ToString();
-            timeshift_secondEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getSecond().ToString();
-            timeshift_msecEnd_inputBox.Text = currentSRT.getToken(0).getEndTime().getMilliSecond().ToString();
+            timeshift_msecond_textinput.Text = currentSRT.getToken(0).getStartTime().getMilliSecond().ToString();  
        
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-            openSRTFile.Filter = "SRT Files (*.srt)|*.srt";
-            //openSRTFile.Filter = "SRT Files (*.srt)|*.srt|All files (*.*)|*.*";
-            if (openSRTFile.ShowDialog() == DialogResult.OK)
-            {
-              
-            }
-            DebugLogger.Text = logger.getCurrentLog();
-        }
 
     
 
@@ -172,7 +156,7 @@ namespace SubEditNET
         {
             try
             {
-                int currentValue = Convert.ToInt32(timeshift__minute_textinput.Text);
+                int currentValue = Convert.ToInt32(timeshift_minute_textinput.Text);
                 if (currentValue >= 0 && currentValue <= 59)
                 {
                     logger.add(currentValue.ToString(), Level.DEBUG);
@@ -180,14 +164,14 @@ namespace SubEditNET
                 }
                 if (currentValue < 0 || currentValue > 59)
                 {
-                    timeshift__minute_textinput.Text = "";
+                    timeshift_minute_textinput.Text = "";
                     DebugLogger.Text = logger.getCurrentLog();
                 }
             }
             catch (Exception)
             {
 
-                timeshift__minute_textinput.Text = "";
+                timeshift_minute_textinput.Text = "";
             }
         }
 
@@ -242,17 +226,7 @@ namespace SubEditNET
             }
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
-            openSRTFile.Filter = "SRT Files (*.srt)|*.srt";
-            //openSRTFile.Filter = "SRT Files (*.srt)|*.srt|All files (*.*)|*.*";
-            if (openSRTFile.ShowDialog() == DialogResult.OK)
-            {
-
-            }
-            DebugLogger.Text = logger.getCurrentLog();
-        }
+      
 
         private void DebugLogger_ContextMenuStripChanged(object sender, EventArgs e)
         {
@@ -271,26 +245,7 @@ namespace SubEditNET
             DebugLogger.Text = logger.getCurrentLog();
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-
-            if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
-            {
-                MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-
-                saveSRTFile.Filter = "SRT File (*.srt)|*.srt|Text File (*.txt)|*.txt";
-
-                if (saveSRTFile.ShowDialog() == DialogResult.OK)
-                {
-
-                }
-
-            }
        
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -324,7 +279,7 @@ namespace SubEditNET
                 int oldMinValue;
                 try
                 {
-                    oldMinValue = Convert.ToInt32(timeshift__minute_textinput.Text);
+                    oldMinValue = Convert.ToInt32(timeshift_minute_textinput.Text);
                 }
                 catch (Exception)
                 {
@@ -344,7 +299,7 @@ namespace SubEditNET
 
                 int oldTimeValue = oldHrValue * 60 * 60 * 1000 + oldMinValue * 60 * 1000 + oldSecValue * 1000 + oldMSValue;
 
-                int newTimeValue = oldTimeValue + 500;
+                int newTimeValue = oldTimeValue + Convert.ToInt32(timeShiftValue.Text);
                 //bis hier stimmt der wert newTimeValue nun muss er aufgesplittet werden und hier passieren die fehler:
 
                 int newHrValue = newTimeValue / 3600000;
@@ -354,7 +309,7 @@ namespace SubEditNET
 
                 timeshift_msecond_textinput.Text = newMSValue.ToString();
                 timeshift_second_textinput.Text = newSecValue.ToString();
-                timeshift__minute_textinput.Text = newMinValue.ToString();
+                timeshift_minute_textinput.Text = newMinValue.ToString();
                 timeshift_hour_textbox.Text = newHrValue.ToString();
             }
            
@@ -432,7 +387,7 @@ namespace SubEditNET
                 int oldMinValue;
                 try
                 {
-                    oldMinValue = Convert.ToInt32(timeshift__minute_textinput.Text);
+                    oldMinValue = Convert.ToInt32(timeshift_minute_textinput.Text);
                 }
                 catch (Exception)
                 {
@@ -452,7 +407,7 @@ namespace SubEditNET
 
                 int oldTimeValue = oldHrValue * 60 * 60 * 1000 + oldMinValue * 60 * 1000 + oldSecValue * 1000 + oldMSValue;
 
-                int newTimeValue = oldTimeValue - 500;
+                int newTimeValue = oldTimeValue - Convert.ToInt32(timeShiftValue.Text);
                 //bis hier stimmt der wert newTimeValue nun muss er aufgesplittet werden und hier passieren die fehler:
                 if (newTimeValue >= 0)
                 {
@@ -464,7 +419,7 @@ namespace SubEditNET
 
                     timeshift_msecond_textinput.Text = newMSValue.ToString();
                     timeshift_second_textinput.Text = newSecValue.ToString();
-                    timeshift__minute_textinput.Text = newMinValue.ToString();
+                    timeshift_minute_textinput.Text = newMinValue.ToString();
                     timeshift_hour_textbox.Text = newHrValue.ToString();
                 }
                 else
@@ -476,7 +431,7 @@ namespace SubEditNET
 
                     timeshift_msecond_textinput.Text = newMSValue.ToString();
                     timeshift_second_textinput.Text = newSecValue.ToString();
-                    timeshift__minute_textinput.Text = newMinValue.ToString();
+                    timeshift_minute_textinput.Text = newMinValue.ToString();
                     timeshift_hour_textbox.Text = newHrValue.ToString();
                 }
 
@@ -488,20 +443,113 @@ namespace SubEditNET
         private void saveSRTFile_FileOk(object sender, CancelEventArgs e)
         {
            
-            MessageBox.Show("Do you want to save the file? This can not be undone.", "Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //MessageBox.Show("Do you want to save the file?
+            //This can not be undone.", "Save File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+          
+            //get the SRTSaver Instance
             SRTSaver saver = SRTSaver.Instance;
+            //get the TimeShifter Instance
+            //TODO get only if timeshift was used, not important change
             TimeShifter shifter = TimeShifter.Instance;
 
+            //get the new start time of first subtitle
             SRTTime newStartTime = new SRTTime(Convert.ToInt32(timeshift_hour_textbox.Text),
-                                                Convert.ToInt32(timeshift__minute_textinput.Text),
+                                                Convert.ToInt32(timeshift_minute_textinput.Text),
                                                 Convert.ToInt32(timeshift_second_textinput.Text),
                                                 Convert.ToInt32(timeshift_msecond_textinput.Text));
-
+            //use the previously determined start time to shift the time
             shifter.shiftTime(currentSRT, newStartTime);
-
+            //save the srt to the file system
             saver.saveSRT(currentSRT, saveSRTFile.FileName);
             
 
+        }
+
+        private void timeShiftValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            //note: !char.IsPunctuation(e.KeyChar)) if punctuation is needed at some point
+        }
+
+        private void toolStripNewButton_Click(object sender, EventArgs e)
+        {
+            //remove currently loaded srt from runtime cache
+            currentSRT = new SRT();
+            //clear preview panel
+            //TODO
+            //restore initial control status
+            //TODO
+
+        }
+
+        private void toolStripOpenButton_Click(object sender, EventArgs e)
+        {
+            openSRTFile.Filter = "SRT Files (*.srt)|*.srt";
+            //openSRTFile.Filter = "SRT Files (*.srt)|*.srt|All files (*.*)|*.*";
+            if (openSRTFile.ShowDialog() == DialogResult.OK)
+            {
+                toolStripSaveButton.Enabled = true;
+                timeShiftGroupBox.Enabled = true;
+                previewGroupBox.Enabled = true;
+            }
+            DebugLogger.Text = logger.getCurrentLog();
+        }
+
+        private void toolStripSaveButton_Click(object sender, EventArgs e)
+        {
+            //if (currentFileTextbox.Text == "" || currentFileTextbox.Text == null)
+            //{
+            //    MessageBox.Show("Please load a file first.", "No File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //else
+            //{
+
+            saveSRTFile.Filter = "SRT File (*.srt)|*.srt|Text File (*.txt)|*.txt";
+
+            if (saveSRTFile.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+            //}
+        }
+
+        private void timeshift_msecond_textinput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            //note: !char.IsPunctuation(e.KeyChar)) if punctuation is needed at some point
+        }
+
+        private void timeshift_second_textinput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            //note: !char.IsPunctuation(e.KeyChar)) if punctuation is needed at some point
+        }
+
+        private void timeshift_minute_textinput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            //note: !char.IsPunctuation(e.KeyChar)) if punctuation is needed at some point
+        }
+
+        private void timeshift_hour_textbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            //note: !char.IsPunctuation(e.KeyChar)) if punctuation is needed at some point
         }
 
       
