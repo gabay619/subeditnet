@@ -12,6 +12,8 @@ using SubEditNET.Loader;
 using SubEditNET.Entities;
 using SubEditNET.Saver;
 using SubEditNET.Modifiers;
+using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace SubEditNET
 {
@@ -550,6 +552,45 @@ namespace SubEditNET
                 e.Handled = true;
             }
             //note: !char.IsPunctuation(e.KeyChar)) if punctuation is needed at some point
+        }
+
+        private static string GetDefaultBrowserPath()
+        {
+
+            string key = @"htmlfile\shell\open\command";
+
+            RegistryKey registryKey =
+
+            Registry.ClassesRoot.OpenSubKey(key, false);
+
+            // get default browser path
+
+            return ((string)registryKey.GetValue(null, null)).Split('"')[1];
+
+        }
+
+        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+            string defaultBrowserPath = GetDefaultBrowserPath();
+
+            try
+            {
+
+                // launch default browser
+
+                Process.Start(defaultBrowserPath, "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TEUK2YP4K976G");
+
+            }
+
+            catch (Exception exp)
+            {
+
+                MessageBox.Show(exp.Message);
+
+            }
+
         }
 
       
